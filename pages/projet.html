@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="explorer-page">
+
+  <div class="explorer">
+
+    <!-- Barre d'outils façon explorateur de fichiers -->
+    <div class="explorer-toolbar">
+      <div class="explorer-toolbar-actions">
+        <button type="button" class="explorer-toolbar-btn" title="Nouveau">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+        </button>
+        <button type="button" class="explorer-toolbar-btn" title="Trier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h10M4 18h6"></path>
+          </svg>
+        </button>
+        <button type="button" class="explorer-toolbar-btn" title="Affichage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="explorer-path" aria-label="Chemin">
+        <a href="../index.html#home" class="explorer-path-crumb">
+          <span aria-hidden="true">⌂</span> Portfolio
+        </a>
+        <span class="explorer-path-sep" aria-hidden="true">›</span>
+        <span class="explorer-path-crumb explorer-path-crumb--current">Projets</span>
+      </nav>
+
+      <div class="explorer-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <span>Rechercher dans : Projets</span>
+      </div>
+    </div>
+
+    <div class="explorer-body">
+
+      <!-- Recap des projets par date, façon "Accès rapide" de l'explorateur -->
+      <aside class="explorer-sidebar">
+        <nav class="explorer-nav" aria-label="Projets par date">
+          <span class="explorer-nav-heading">Projets par date</span>
+          <a href="#annee-2026" class="explorer-nav-item explorer-nav-item--active">
+            <span class="explorer-nav-icon" aria-hidden="true">🗓️</span>
+            2026
+            <span class="explorer-nav-count">(2)</span>
+          </a>
+          <a href="#annee-2025" class="explorer-nav-item">
+            <span class="explorer-nav-icon" aria-hidden="true">🗓️</span>
+            2025
+            <span class="explorer-nav-count">(2)</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="explorer-main">
+        <header class="explorer-main-header">
+          <h1>Mes réalisations</h1>
+          <p>Une sélection de projets réalisés en formation ou en autonomie.</p>
+        </header>
+
+        <section class="explorer-group" id="annee-2026">
+          <h2 class="explorer-group-title">2026 <span class="explorer-group-count">(2)</span></h2>
+          <div class="explorer-grid">
+            <article class="explorer-item">
+              <div class="explorer-item-thumb">
+                <span class="explorer-item-icon" aria-hidden="true">🖥️</span>
+              </div>
+              <div class="explorer-item-info">
+                <span class="explorer-item-name">Nom du projet 1</span>
+                <span class="explorer-item-meta">Site web · Août 2026</span>
+                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              </div>
+            </article>
+
+            <article class="explorer-item">
+              <div class="explorer-item-thumb">
+                <span class="explorer-item-icon" aria-hidden="true">📱</span>
+              </div>
+              <div class="explorer-item-info">
+                <span class="explorer-item-name">Nom du projet 2</span>
+                <span class="explorer-item-meta">Application · Mars 2026</span>
+                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="explorer-group" id="annee-2025">
+          <h2 class="explorer-group-title">2025 <span class="explorer-group-count">(2)</span></h2>
+          <div class="explorer-grid">
+            <article class="explorer-item">
+              <div class="explorer-item-thumb">
+                <span class="explorer-item-icon" aria-hidden="true">🎨</span>
+              </div>
+              <div class="explorer-item-info">
+                <span class="explorer-item-name">Nom du projet 3</span>
+                <span class="explorer-item-meta">Design · Novembre 2025</span>
+                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              </div>
+            </article>
+
+            <article class="explorer-item">
+              <div class="explorer-item-thumb">
+                <span class="explorer-item-icon" aria-hidden="true">🖥️</span>
+              </div>
+              <div class="explorer-item-info">
+                <span class="explorer-item-name">Nom du projet 4</span>
+                <span class="explorer-item-meta">Site web · Juin 2025</span>
+                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>

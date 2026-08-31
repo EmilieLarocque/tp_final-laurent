@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>À propos — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="about-cas">
+
+<!-- En-tête façon explorateur de fichiers (même style que pages/projet.html),
+     séparé du contenu de .stage. -->
+<div class="topbar">
+  <div class="topbar-actions">
+    <button type="button" class="topbar-icon-btn" title="Nouveau">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12h14"></path>
+      </svg>
+    </button>
+    <button type="button" class="topbar-icon-btn" title="Trier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h10M4 18h6"></path>
+      </svg>
+    </button>
+    <button type="button" class="topbar-icon-btn" title="Affichage">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="topbar-path" aria-label="Chemin">
+    <a href="../index.html#home" class="topbar-path-crumb">
+      <span aria-hidden="true">⌂</span> Portfolio
+    </a>
+    <span class="topbar-path-sep" aria-hidden="true">›</span>
+    <span class="topbar-path-crumb topbar-path-crumb--current">À propos</span>
+  </nav>
+
+  <div class="topbar-search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="M21 21l-4.35-4.35"></path>
+    </svg>
+    <span>Rechercher dans : À propos</span>
+  </div>
+</div>
+
+<div class="stage">
+
+<!-- VIEWPORT : portrait façon HUD de jeu (badge de niveau, brackets, XP) -->
+  <div class="viewport">
+    <div class="portrait-wrap">
+      <div class="portrait-frame">
+        <img src="/media/sims4-body.png" alt="Avatar 3D stylisé d'Émilie" />
+      </div>
+      <span class="portrait-bracket portrait-bracket--tl" aria-hidden="true"></span>
+      <span class="portrait-bracket portrait-bracket--tr" aria-hidden="true"></span>
+      <span class="portrait-bracket portrait-bracket--bl" aria-hidden="true"></span>
+      <span class="portrait-bracket portrait-bracket--br" aria-hidden="true"></span>
+      <div class="lvl-badge">
+        <span class="lvl-badge-label">LVL</span>
+        <span class="lvl-badge-num">12</span>
+      </div>
+    </div>
+
+    <div class="profile-name">Émilie</div>
+    <div class="profile-subtitle">Développeuse front-end · Niveau créatif</div>
+
+    <div class="xp-row">
+      <span class="xp-label">XP</span>
+      <div class="xp-segments">
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment"></span>
+        <span class="xp-segment"></span>
+        <span class="xp-segment"></span>
+      </div>
+      <span class="xp-value">72%</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL : statistiques et équipement façon feuille de personnage -->
+  <div class="rightpanel">
+    <div class="section-header">
+      <span class="section-tick"></span>
+      <h3>Statistiques</h3>
+    </div>
+    <div class="stats-wrap">
+      <div class="stat-row">
+        <span class="stat-row-label">Créativité</span>
+        <div class="stat-segments">
+          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+        </div>
+        <span class="stat-row-value">82</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row-label">Rigueur</span>
+        <div class="stat-segments">
+          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+        </div>
+        <span class="stat-row-value">70</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-row-label">Curiosité</span>
+        <div class="stat-segments">
+          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span>
+        </div>
+        <span class="stat-row-value">95</span>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-tick"></span>
+      <h3>Équipement</h3>
+    </div>
+    <div class="items-row">
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Figma</span></div>
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">VS Code</span></div>
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Notion</span></div>
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Git</span></div>
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">GitHub</span></div>
+    </div>
+
+    <p class="save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
+  </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

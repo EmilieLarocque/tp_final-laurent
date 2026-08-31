@@ -1,0 +1,2425 @@
+/* =========================================================
+   1. VARIABLES
+========================================================= */
+
+:root {
+  --color-bg: #08080a;
+  --color-bg-soft: #101014;
+  --color-surface: #15151a;
+  --color-surface-light: #1d1d24;
+
+  --color-text: #f2f2f2;
+  --color-text-muted: #92929b;
+  --color-border: rgba(255, 255, 255, 0.1);
+
+  --color-primary: #d000ff;
+  --color-secondary: #6c4dff;
+
+  --font-main: Arial, Helvetica, sans-serif;
+
+  --container: 1280px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --transition-fast: 0.2s ease;
+  --transition: 0.35s ease;
+
+  --background-img: url("../media/test1.png");
+
+  /* Filtre partagé "Sweet Sunset" (en N&B) pour harmoniser les photos :
+     grayscale + contraste/saturation, puis une teinte rose/magenta posée en
+     multiply par-dessus. Le N&B garantit que les deux images partagent le
+     même rendu, peu importe leurs couleurs d'origine. */
+  --img-filter: contrast(128%) grayscale(100%) saturate(120%);
+  --img-tint: #fa00cc;
+  --img-tint-opacity: 0.15;
+}
+
+/* =========================================================
+   2. RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =========================================================
+   3. BODY
+========================================================= */
+
+body {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  color: var(--color-text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Image de fond isolée dans un pseudo-élément : le filtre s'applique
+   uniquement à l'image, pas au contenu (texte, boutons...) au-dessus */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background-image: var(--background-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter: var(--img-filter);
+}
+
+/* Teinte duotone posée en multiply par-dessus le fond en N&B */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--img-tint);
+  opacity: var(--img-tint-opacity);
+  mix-blend-mode: multiply;
+}
+
+/* =========================================================
+   4. ÉCRAN DE VERROUILLAGE
+========================================================= */
+
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  background: linear-gradient(160deg, #1a0630 0%, var(--color-bg) 65%);
+  color: var(--color-text);
+  text-align: center;
+  cursor: pointer;
+
+  transition: opacity 0.5s ease;
+}
+
+.lock-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lock-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lock-date {
+  margin-bottom: 10px;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.lock-time {
+  font-size: clamp(4rem, 14vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.lock-user {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lock-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.lock-role {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.lock-hint {
+  position: absolute;
+  bottom: 40px;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  animation: lock-hint-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lock-hint-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   7. HERO / BUREAU (#home)
+========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 98vh;
+  min-height: 650px;
+  /* Le padding gauche laisse de la place à .desktop-icons (colonne de
+     raccourcis épinglée à left:5vw) pour que le contenu centré ne le
+     chevauche pas. Plus de header fixe : le padding-top redevient un
+     simple espacement de confort. */
+  padding: 50px 5vw 80px calc(5vw + 96px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* #home sert aussi de zone de dépôt pour les fenêtres */
+.windows-desktop {
+  position: relative;
+  overflow: hidden;
+
+  /* Palette chaude scopée à cette section : n'affecte pas --color-primary/
+     --color-secondary utilisées ailleurs (autres pages, boutons globaux). */
+  --wd-terracotta: #c77a5c;
+  --wd-mauve: #a97c8e;
+  --wd-peach: #e8c9a3;
+  --wd-cream: #f3e9dc;
+  --wd-ink: #241b17;
+  --wd-panel: #1c1512;
+  --wd-panel-soft: #2a2019;
+  --wd-font-display: "Baloo 2", "Nunito", sans-serif;
+  --wd-font-mono: "Space Mono", "Courier New", monospace;
+  --wd-font-body: "Nunito", var(--font-main);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 48px;
+  max-width: 1040px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.hero h1 {
+  margin-bottom: 25px;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.hero-description {
+  max-width: 550px;
+  margin-bottom: 35px;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+}
+
+.hero-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* --- Fenêtre d'intro façon terminal, avec une "photo" qui dépasse derrière --- */
+
+.intro-stack {
+  position: relative;
+  max-width: 600px;
+}
+
+.intro-window-wrap {
+  position: relative;
+}
+
+.intro-photo {
+  position: absolute;
+  top: -55px;
+  left: -18px;
+  z-index: 0;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  padding-bottom: 10px;
+
+  transform: rotate(-8deg);
+}
+
+/* Cadre de la photo : taille/arrondi/teinte vivent ici, l'image se contente
+   de remplir le cadre. Même --img-filter et --img-tint que le fond, pour
+   harmoniser les deux images avec le même traitement duotone. */
+.intro-photo-label {
+  position: relative;
+  display: block;
+  width: 74px;
+  margin: 0 auto 45px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.intro-photo-label::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: var(--img-tint-opacity);
+  mix-blend-mode: multiply;
+}
+
+.intro-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.intro-window {
+  position: relative;
+  z-index: 1;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--wd-panel);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+}
+
+.intro-window-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 42px;
+  padding: 0 16px;
+
+  background: linear-gradient(120deg, var(--wd-mauve) 0%, var(--wd-peach) 100%);
+}
+
+.intro-window-title {
+  position: absolute;
+  left: 3%;
+  color: var(--wd-ink);
+  font-family: var(--wd-font-mono);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+.intro-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--wd-ink);
+  font-size: 0.9rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.intro-window-body {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 32px;
+  font-family: var(--wd-font-body);
+}
+
+.intro-window .intro-name {
+  margin-bottom: 18px;
+  font-family: var(--wd-font-display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--wd-cream);
+  text-shadow: 0 2px 0 rgba(199, 122, 92, 0.55);
+}
+
+.intro-window .hero-description {
+  max-width: 480px;
+  margin-bottom: 18px;
+  color: var(--color-text-muted);
+}
+
+.intro-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-family: var(--wd-font-body);
+  font-size: 0.9rem;
+}
+
+.intro-key {
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--wd-terracotta);
+  font-weight: 700;
+}
+
+.intro-prompt {
+  color: var(--wd-terracotta);
+  font-family: var(--wd-font-mono);
+  font-size: 0.82rem;
+}
+
+.intro-cursor {
+  display: inline-block;
+  animation: intro-cursor-blink 1s steps(1) infinite;
+}
+
+@keyframes intro-cursor-blink {
+  50% { opacity: 0; }
+}
+
+.button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 25px;
+
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(208, 0, 255, 0.3);
+}
+
+.button-secondary {
+  background: transparent;
+  border-color: var(--color-border);
+}
+
+.button-secondary:hover {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+/* =========================================================
+   8. FENÊTRES
+========================================================= */
+
+.window {
+  position: absolute;
+  width: 850px;
+  height: 600px;
+  min-width: 400px;
+  min-height: 300px;
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  background: var(--color-bg);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65), 0 0 35px rgba(208, 0, 255, 0.08);
+
+  opacity: 0;
+  transform: scale(0.92);
+  animation: window-open 0.3s ease forwards;
+}
+
+@keyframes window-open {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.window.closing {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.window.active {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 45px rgba(208, 0, 255, 0.14);
+}
+
+.window.minimized {
+  width: 280px;
+  height: 42px;
+  min-width: 280px;
+  min-height: 42px;
+}
+
+.window.minimized .window-content {
+  display: none;
+}
+
+.window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0;
+  min-height: 0;
+  margin: 0 !important;
+  border-radius: 0;
+  transform: none !important;
+  animation: none;
+}
+
+.window-header {
+  flex-shrink: 0;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+
+  /* Même dégradé que les widgets/fenêtres d'intro et la barre d'outils des
+     pages internes (.explorer-toolbar), pour que la chrome de fenêtre et
+     son contenu forment une seule bande visuelle continue. */
+  background: linear-gradient(120deg, var(--wd-mauve, #a97c8e) 0%, var(--wd-peach, #e8c9a3) 100%);
+  border-bottom: 1px solid rgba(36, 27, 23, 0.18);
+  cursor: grab;
+  user-select: none;
+}
+
+.window-header:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  flex: 1;
+  min-width: 0;
+  padding-left: 10px;
+
+  color: var(--wd-ink, #241b17);
+  font-family: var(--wd-font-mono, "Space Mono", "Courier New", monospace);
+  font-style: italic;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.window-control {
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  color: var(--wd-ink, #241b17);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.window-control:hover {
+  background: rgba(36, 27, 23, 0.14);
+  color: var(--wd-ink, #241b17);
+}
+
+.window-control.close:hover {
+  background: #c9344d;
+  color: #ffffff;
+}
+
+.window-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.window-content iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: var(--color-bg);
+}
+
+/* =========================================================
+   9. TASKBAR
+========================================================= */
+
+.taskbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 900;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 16px;
+
+  /* Même teinte sombre chaude que la chrome des fenêtres/widgets */
+  background: rgba(28, 21, 18, 0.9);
+  border-top: 1px solid rgba(243, 233, 220, 0.12);
+  /* Coins arrondis + ombre portée vers le haut : même langage visuel
+     "panneau flottant" que .window et .widget, pas juste leurs couleurs. */
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -14px 35px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.taskbar-windows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.lock-button {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin-right: 8px;
+
+  border: 1px solid rgba(243, 233, 220, 0.18);
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(243, 233, 220, 0.65);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Sépare le bouton système (verrouiller) des boutons de fenêtres ouvertes */
+.lock-button::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  width: 1px;
+  height: 60%;
+  background: rgba(243, 233, 220, 0.18);
+  transform: translateY(-50%);
+}
+
+.lock-button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.lock-button:hover {
+  background: var(--wd-panel-soft, #2a2019);
+  border-color: var(--wd-terracotta, #c77a5c);
+  color: var(--wd-cream, #f3e9dc);
+  transform: translateY(-2px);
+}
+
+.taskbar-window {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(243, 233, 220, 0.18);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: rgba(243, 233, 220, 0.65);
+  font-family: var(--wd-font-mono, "Space Mono", monospace);
+  font-style: italic;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.taskbar-window:hover {
+  color: var(--wd-cream, #f3e9dc);
+  border-color: var(--wd-terracotta, #c77a5c);
+  transform: translateY(-2px);
+}
+
+.taskbar-window.active {
+  background: var(--wd-panel-soft, #2a2019);
+  color: var(--wd-cream, #f3e9dc);
+  border-color: var(--wd-terracotta, #c77a5c);
+}
+
+/* Zone système à droite (façon icônes de la barre d'état), pousse
+   elle-même + l'horloge à droite, laissant .taskbar-windows à gauche. */
+.taskbar-tray {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskbar-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid rgba(243, 233, 220, 0.18);
+  border-radius: 50%;
+  color: rgba(243, 233, 220, 0.65);
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.taskbar-icon-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.taskbar-icon-btn:hover {
+  background: var(--wd-panel-soft, #2a2019);
+  border-color: var(--wd-terracotta, #c77a5c);
+  color: var(--wd-cream, #f3e9dc);
+  transform: translateY(-2px);
+}
+
+.taskbar-clock {
+  flex-shrink: 0;
+  color: rgba(243, 233, 220, 0.6);
+  font-family: var(--wd-font-mono, "Space Mono", monospace);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================
+   10. WIDGETS BUREAU
+========================================================= */
+
+/* Widget indépendant (calendrier) : simple élément du flex row .hero-content,
+   pas de chevauchement avec la fenêtre d'intro. */
+.desktop-widgets {
+  flex-shrink: 0;
+  width: 260px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Widgets qui chevauchent un coin de .intro-window-wrap (météo, spotify) */
+.corner-widget {
+  position: absolute;
+  z-index: 3;
+  width: 240px;
+}
+
+.corner-widget--top {
+  top: -71px;
+  right: 139px;
+}
+
+.corner-widget--bottom {
+  bottom: -143px;
+  right: 75px;
+}
+
+.widget.widget-calendar {
+    line-height: 1;
+    width: 200px;
+    margin-left: -15px;
+    z-index: 3;
+}
+
+.widget {
+  flex-shrink: 0;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--wd-panel);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Petit bandeau façon fenêtre, en haut de chaque widget */
+.widget-titlebar {
+  margin: -18px -18px 14px -18px;
+  padding: 8px 14px;
+
+  background: linear-gradient(120deg, var(--wd-mauve) 0%, var(--wd-peach) 100%);
+}
+
+/* Le widget Spotify n'a pas de padding à compenser (l'iframe touche les bords) */
+.widget-titlebar--flush {
+  margin: 0;
+}
+
+.widget-titlebar-title {
+  color: var(--wd-ink);
+  font-family: var(--wd-font-mono);
+  font-style: italic;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+}
+
+.widget-weather-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.widget-icon {
+  font-size: 2rem;
+}
+
+.widget-weather-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-weather-temp {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.widget-weather-city {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.widget-calendar-header {
+  margin-bottom: 12px;
+  color: var(--wd-terracotta);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.05em;
+}
+
+.widget-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.calendar-weekday {
+  padding-bottom: 6px;
+  font-weight: 600;
+}
+
+.calendar-day {
+  position: relative;
+  padding: 0px 0 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.calendar-day:hover {
+  background: var(--color-surface);
+}
+
+.calendar-day.today {
+  background: var(--wd-terracotta);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.calendar-day.selected {
+  outline: 1px solid var(--wd-terracotta);
+  outline-offset: 1px;
+}
+
+/* Petit point sous les jours qui ont des créneaux renseignés */
+.calendar-day.has-slots::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--color-secondary);
+}
+
+.calendar-day.today.has-slots::after {
+  background: #ffffff;
+}
+
+.calendar-slots {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calendar-slots-empty {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.calendar-slot {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+}
+
+.calendar-slot.available {
+  background: rgba(76, 217, 100, 0.12);
+  color: #4cd964;
+}
+
+.calendar-slot.unavailable {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.widget-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.widget-skills-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.widget-spotify {
+  padding: 0;
+  overflow: hidden;
+  width: 50%;
+}
+
+.widget-spotify iframe {
+  display: block;
+}
+
+/* =========================================================
+   10bis. NOTIFICATION DE BIENVENUE
+========================================================= */
+
+.greeting-toast {
+  position: fixed;
+  top: 24px;
+  right: 5vw;
+  z-index: 600;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 300px;
+  padding: 14px 16px;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(21, 21, 26, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.greeting-toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.greeting-emoji {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.greeting-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.greeting-text strong {
+  color: var(--color-text);
+  font-size: 0.88rem;
+}
+
+.greeting-close {
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.greeting-close:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* =========================================================
+   11. FOOTER
+========================================================= */
+
+.site-footer {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.footer-bottom {
+  width: min(calc(100% - 40px), var(--container));
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   12. PAGES INTERNES
+========================================================= */
+
+.page-content {
+  min-height: 100%;
+  padding: 50px;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.page-header {
+  padding-bottom: 45px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.page-header h1 {
+  margin-bottom: 15px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+}
+
+.page-intro {
+  max-width: 650px;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.page-main {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-section {
+  padding: 70px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-section:last-child {
+  border-bottom: 0;
+}
+
+.content-label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.content-heading {
+  margin-bottom: 35px;
+}
+
+.content-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+/* --- À propos --- */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-image {
+  min-height: 400px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.about-text h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.about-text p {
+  margin-bottom: 18px;
+  color: var(--color-text-muted);
+}
+
+/* --- Timeline (parcours) --- */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 30px;
+  padding: 25px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.timeline-year {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.timeline-content h3 {
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  color: var(--color-text-muted);
+}
+
+/* --- Cartes (compétences) --- */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.content-card {
+  padding: 30px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(208, 0, 255, 0.5);
+}
+
+.card-number {
+  display: block;
+  margin-bottom: 30px;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+}
+
+.content-card h3 {
+  margin-bottom: 10px;
+}
+
+.content-card p {
+  color: var(--color-text-muted);
+}
+
+/* --- Projets --- */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.project-image {
+  aspect-ratio: 16 / 9;
+  background: var(--color-surface-light);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 25px;
+}
+
+.project-category {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.project-info p {
+  margin-top: 10px;
+  color: var(--color-text-muted);
+}
+
+/* --- Contact --- */
+
+.contact-box {
+  padding: 45px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.contact-box p {
+  margin-bottom: 25px;
+  color: var(--color-text-muted);
+}
+
+.contact-link {
+  display: inline-block;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   13. RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+  .desktop-widgets,
+  .corner-widget {
+    display: none;
+  }
+
+  .window {
+    width: 85vw;
+    height: 75vh;
+    min-width: 320px;
+    min-height: 250px;
+  }
+
+  .about-grid,
+  .cards-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .desktop-icon-preview {
+    display: none;
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 30px 20px 60px calc(20px + 92px);
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .intro-photo {
+    display: none;
+  }
+
+  .intro-window .intro-name {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+
+  .intro-window .hero-description {
+    margin-bottom: 0;
+  }
+
+  .intro-status,
+  .intro-prompt {
+    display: none;
+  }
+
+  .greeting-toast {
+    top: 88px;
+    right: 16px;
+    left: 16px;
+    max-width: none;
+  }
+
+  .window {
+    width: calc(100% - 20px);
+    height: calc(100% - 70px);
+    min-width: 0;
+    min-height: 0;
+    top: 10px !important;
+    left: 10px !important;
+  }
+
+  .page-content {
+    padding: 30px 25px;
+  }
+
+  .about-image {
+    min-height: 250px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* =========================================================
+   14. ICÔNES BUREAU & EASTER EGG NODE_MODULES
+========================================================= */
+
+.desktop-icons {
+  position: absolute;
+  left: 5vw;
+  top: 30px;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.desktop-icon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 78px;
+  padding: 6px 4px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  border-color: var(--color-border);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.desktop-icon--active {
+  border-color: rgba(199, 122, 92, 0.4);
+  background: rgba(199, 122, 92, 0.1);
+}
+
+.desktop-icon-img {
+  width: 32px;
+  margin-inline: auto;
+}
+
+.desktop-icon-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.desktop-icon-size {
+  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Aperçu au survol d'un dossier de nav : mini-fenêtre flottant à droite de l'icône */
+.desktop-icon-preview {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 14px);
+  z-index: 950;
+
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  padding-bottom: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--wd-panel, var(--color-surface));
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-6px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+}
+
+.desktop-icon-preview::after {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 16px;
+  border: 7px solid transparent;
+  border-right-color: var(--wd-panel, var(--color-surface));
+}
+
+.desktop-icon:hover .desktop-icon-preview,
+.desktop-icon:focus-within .desktop-icon-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.desktop-icon-preview-bar {
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  background: linear-gradient(120deg, var(--wd-mauve, #a97c8e) 0%, var(--wd-peach, #e8c9a3) 100%);
+  color: var(--wd-ink, #241b17);
+  font-family: var(--wd-font-mono, monospace);
+  font-style: italic;
+  font-size: 0.68rem;
+  text-align: left;
+}
+
+.desktop-icon-preview-line {
+  display: block;
+  width: 85%;
+  height: 8px;
+  margin: 0 12px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.desktop-icon.shake {
+  animation: desktop-icon-shake 0.3s ease;
+}
+
+@keyframes desktop-icon-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px) rotate(-3deg); }
+  75% { transform: translateX(4px) rotate(3deg); }
+}
+
+.bsod-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
+  padding: 10vw;
+
+  background: #0078d7;
+  color: #ffffff;
+  font-family: "Segoe UI", var(--font-main);
+  cursor: pointer;
+}
+
+.bsod-screen.hidden {
+  display: none;
+}
+
+.bsod-face {
+  font-size: 6rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.bsod-text {
+  max-width: 600px;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.bsod-progress,
+.bsod-stop-code {
+  font-size: 1rem;
+}
+
+.bsod-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 10vw;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Accessibilité : focus visible + respect de la préférence "réduire les animations" */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================================================
+   15. PAGE À PROPOS (maquette style Create-a-Sim)
+   Tokens scopés à .about-cas (posé sur le <body> de la page)
+   pour ne pas entrer en conflit avec les variables globales.
+========================================================= */
+
+.about-cas {
+  --bg-1: #2a1c14;
+  --bg-2: #14100c;
+  --panel: #1c1512;
+  --panel-soft: #2a2019;
+  --panel-border: rgba(243, 233, 220, 0.12);
+  --ink: #f3e9dc;
+  --ink-soft: rgba(243, 233, 220, 0.65);
+  --accent: #c77a5c;
+  --accent-2: #a97c8e;
+  --accent-3: #e8c9a3;
+  --accent-4: #241b17;
+  --shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --font-display: "Baloo 2", "Nunito", sans-serif;
+  --font-mono: "Space Mono", "Courier New", monospace;
+
+  font-family: "Nunito", sans-serif;
+  color: var(--ink);
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(199, 122, 92, 0.14), transparent 40%),
+    linear-gradient(160deg, var(--bg-1), var(--bg-2) 60%, #0c0906 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.about-cas .stage {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  padding: clamp(10px, 1.5vw, 22px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "viewport rightpanel";
+  gap: 14px;
+}
+
+/* TOP BAR — même langage que .explorer-toolbar (pages/projet.html), séparée
+   de .stage : icônes d'action, pastille de fil d'ariane, pastille de recherche. */
+.about-cas .topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: linear-gradient(120deg, var(--accent-2) 0%, var(--accent-3) 100%);
+  padding: 10px 18px;
+  color: var(--accent-4);
+}
+
+.about-cas .topbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.about-cas .topbar-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(36, 27, 23, 0.08);
+  color: var(--accent-4);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.about-cas .topbar-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.about-cas .topbar-icon-btn:hover {
+  background: rgba(36, 27, 23, 0.18);
+}
+
+.about-cas .topbar-path {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(36, 27, 23, 0.08);
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+.about-cas .topbar-path-crumb {
+  color: var(--accent-4);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.about-cas .topbar-path-crumb:hover {
+  opacity: 1;
+}
+
+.about-cas .topbar-path-crumb--current {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.about-cas .topbar-path-sep {
+  opacity: 0.5;
+}
+
+.about-cas .topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(36, 27, 23, 0.08);
+  color: var(--accent-4);
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.about-cas .topbar-search svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* LEFT NAV — catégories façon CAS (Create-A-Sim) */
+.about-cas .leftnav {
+  grid-area: leftnav;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 10px;
+}
+
+.about-cas .nav-item {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-soft);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.about-cas .nav-item svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--ink-soft);
+}
+
+.about-cas .nav-item.active {
+  background: linear-gradient(160deg, rgba(208, 0, 255, 0.18), rgba(108, 77, 255, 0.18));
+  border-color: var(--accent);
+}
+
+.about-cas .nav-item.active svg {
+  stroke: var(--accent);
+}
+
+.about-cas .nav-item .label {
+  position: absolute;
+  left: 74px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.about-cas .nav-item:hover .label {
+  opacity: 1;
+}
+
+/* VIEWPORT — portrait façon HUD de jeu (badge de niveau, brackets, XP) */
+.about-cas .viewport {
+  grid-area: viewport;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px 16px;
+}
+
+.about-cas .portrait-wrap {
+  position: relative;
+  width: min(260px, 32vw);
+  height: min(340px, 44vh);
+}
+
+.about-cas .portrait-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--panel-soft);
+  border: 1px solid rgba(199, 122, 92, 0.6);
+}
+
+.about-cas .portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.about-cas .portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 45%;
+  background: linear-gradient(180deg, transparent, rgba(8, 6, 4, 0.85));
+  pointer-events: none;
+}
+
+.about-cas .portrait-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+
+.about-cas .portrait-bracket--tl { top: -6px; left: -6px; border-top: 2px solid var(--accent-3); border-left: 2px solid var(--accent-3); }
+.about-cas .portrait-bracket--tr { top: -6px; right: -6px; border-top: 2px solid var(--accent-3); border-right: 2px solid var(--accent-3); }
+.about-cas .portrait-bracket--bl { bottom: -6px; left: -6px; border-bottom: 2px solid var(--accent-3); border-left: 2px solid var(--accent-3); }
+.about-cas .portrait-bracket--br { bottom: -6px; right: -6px; border-bottom: 2px solid var(--accent-3); border-right: 2px solid var(--accent-3); }
+
+.about-cas .lvl-badge {
+  position: absolute;
+  z-index: 2;
+  top: -14px;
+  left: -14px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  border: 1.5px solid var(--accent-4);
+  box-shadow: 0 0 16px rgba(199, 122, 92, 0.55);
+}
+
+.about-cas .lvl-badge-label {
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  color: var(--accent-4);
+}
+
+.about-cas .lvl-badge-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--accent-4);
+}
+
+.about-cas .profile-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--accent-3);
+  text-align: center;
+}
+
+.about-cas .profile-subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.about-cas .xp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(260px, 32vw);
+}
+
+.about-cas .xp-label {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.about-cas .xp-segments {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+}
+
+.about-cas .xp-segment {
+  flex: 1;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--panel-soft);
+}
+
+.about-cas .xp-segment.is-filled {
+  background: linear-gradient(90deg, var(--accent), var(--accent-3));
+  box-shadow: 0 0 6px rgba(199, 122, 92, 0.6);
+}
+
+.about-cas .xp-value {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* RIGHT PANEL — statistiques et équipement façon feuille de personnage */
+.about-cas .rightpanel {
+  grid-area: rightpanel;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.about-cas .section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-cas .section-header h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.about-cas .section-tick {
+  flex-shrink: 0;
+  width: 4px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.about-cas .section-header::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(243, 233, 220, 0.12);
+}
+
+.about-cas .stats-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-cas .stat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-cas .stat-row-label {
+  flex: 0 0 110px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.about-cas .stat-segments {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+}
+
+.about-cas .stat-segment {
+  flex: 1;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--panel-soft);
+}
+
+.about-cas .stat-segment.is-filled {
+  background: linear-gradient(180deg, var(--accent), var(--accent-3));
+}
+
+.about-cas .stat-row-value {
+  flex-shrink: 0;
+  min-width: 34px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(199, 122, 92, 0.5);
+  background: rgba(36, 27, 23, 0.5);
+  color: var(--accent-3);
+  font-weight: 800;
+  font-size: 12px;
+  text-align: center;
+}
+
+.about-cas .items-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.about-cas .item-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 84px;
+  height: 68px;
+  border-radius: 10px;
+  background: var(--panel-soft);
+  border: 1px solid rgba(199, 122, 92, 0.35);
+}
+
+.about-cas .item-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-3);
+}
+
+.about-cas .item-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.about-cas .save-line {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(243, 233, 220, 0.35);
+}
+
+/* =========================================================
+   16. PAGE PROJETS (maquette explorateur de fichiers)
+   Tokens scopés à .explorer-page : même palette chaude que
+   les fenêtres/widgets de l'accueil (.windows-desktop), pour
+   rester cohérent avec le reste du site.
+========================================================= */
+
+.explorer-page {
+  --exp-terracotta: #c77a5c;
+  --exp-mauve: #a97c8e;
+  --exp-peach: #e8c9a3;
+  --exp-cream: #f3e9dc;
+  --exp-ink: #241b17;
+  --exp-panel: #1c1512;
+  --exp-panel-soft: #2a2019;
+  --exp-font-display: "Baloo 2", "Nunito", sans-serif;
+  --exp-font-mono: "Space Mono", "Courier New", monospace;
+  --exp-font-body: "Nunito", var(--font-main);
+
+  min-height: 100vh;
+  background: var(--exp-panel);
+  color: var(--exp-cream);
+  font-family: var(--exp-font-body);
+}
+
+.explorer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.explorer-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  flex-wrap: wrap;
+
+  background: linear-gradient(120deg, var(--exp-mauve) 0%, var(--exp-peach) 100%);
+  color: var(--exp-ink);
+}
+
+.explorer-toolbar-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.explorer-toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(36, 27, 23, 0.08);
+  color: var(--exp-ink);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.explorer-toolbar-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.explorer-toolbar-btn:hover {
+  background: rgba(36, 27, 23, 0.18);
+}
+
+.explorer-path {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(36, 27, 23, 0.08);
+  font-family: var(--exp-font-mono);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+.explorer-path-crumb {
+  color: var(--exp-ink);
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.explorer-path-crumb:hover {
+  opacity: 1;
+}
+
+.explorer-path-crumb--current {
+  opacity: 1;
+  font-weight: 700;
+}
+
+.explorer-path-sep {
+  opacity: 0.5;
+}
+
+.explorer-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(36, 27, 23, 0.08);
+  color: var(--exp-ink);
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.explorer-search svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.explorer-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.explorer-sidebar {
+  flex-shrink: 0;
+  width: 190px;
+  padding: 18px 10px;
+  background: var(--exp-panel-soft);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.explorer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.explorer-nav-heading {
+  display: block;
+  padding: 4px 12px 10px;
+  color: var(--exp-terracotta);
+  font-family: var(--exp-font-mono);
+  font-style: italic;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.explorer-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--exp-cream);
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.75;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+}
+
+.explorer-nav-count {
+  margin-left: auto;
+  color: rgba(243, 233, 220, 0.5);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.explorer-nav-item:hover,
+.explorer-nav-item:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  opacity: 1;
+}
+
+.explorer-nav-item--active {
+  background: rgba(199, 122, 92, 0.18);
+  color: var(--exp-peach);
+  opacity: 1;
+}
+
+.explorer-nav-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.explorer-main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px clamp(20px, 4vw, 48px) 48px;
+  overflow-y: auto;
+}
+
+.explorer-main-header {
+  margin-bottom: 30px;
+}
+
+.explorer-main-header h1 {
+  margin-bottom: 8px;
+  font-family: var(--exp-font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--exp-cream);
+}
+
+.explorer-main-header p {
+  max-width: 520px;
+  color: rgba(243, 233, 220, 0.65);
+  font-size: 0.95rem;
+}
+
+.explorer-group + .explorer-group {
+  margin-top: 36px;
+}
+
+.explorer-group-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--exp-terracotta);
+  font-family: var(--exp-font-mono);
+  font-style: italic;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.explorer-group-count {
+  color: rgba(243, 233, 220, 0.45);
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.explorer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+}
+
+.explorer-item {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  background: var(--exp-panel-soft);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.explorer-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(199, 122, 92, 0.4);
+}
+
+.explorer-item-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, var(--exp-mauve), var(--exp-terracotta));
+}
+
+.explorer-item-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.explorer-grid .explorer-item:nth-child(2n) .explorer-item-thumb {
+  background: linear-gradient(135deg, var(--exp-peach), var(--exp-terracotta));
+}
+
+.explorer-grid .explorer-item:nth-child(3n) .explorer-item-thumb {
+  background: linear-gradient(135deg, var(--exp-mauve), var(--exp-peach));
+}
+
+.explorer-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px 14px;
+}
+
+.explorer-item-name {
+  color: var(--exp-cream);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.explorer-item-meta {
+  color: var(--exp-terracotta);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.explorer-item-desc {
+  margin-top: 4px;
+  color: rgba(243, 233, 220, 0.6);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .explorer-sidebar {
+    display: none;
+  }
+
+  .explorer-search {
+    display: none;
+  }
+
+  .explorer-toolbar {
+    gap: 10px;
+  }
+
+  .explorer-main {
+    padding: 24px 18px 40px;
+  }
+}
