@@ -933,28 +933,6 @@ body::after {
 }
 
 /* =========================================================
-   11. FOOTER
-========================================================= */
-
-.site-footer {
-  position: relative;
-  width: 100%;
-  z-index: 10;
-}
-
-.footer-bottom {
-  width: min(calc(100% - 40px), var(--container));
-  margin-inline: auto;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  color: var(--color-text-muted);
-  font-size: 0.75rem;
-}
-
-/* =========================================================
    12. PAGES INTERNES
 ========================================================= */
 
@@ -1128,11 +1106,6 @@ body::after {
   .page-content {
     padding: 30px 25px;
   }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 8px;
-  }
 }
 
 /* =========================================================
@@ -1253,6 +1226,14 @@ body::after {
   margin: 0 12px 8px;
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.12);
+}
+
+.desktop-icon-preview-text {
+  display: block;
+  margin: 0 12px 6px;
+  color: var(--wd-cream, var(--color-text));
+  font-size: 0.72rem;
+  text-align: left;
 }
 
 .desktop-icon.shake {
