@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="services-page">
+
+  <div class="services">
+
+    <!-- Barre d'outils façon explorateur de fichiers, même langage que .topbar / .explorer-toolbar -->
+    <div class="services-toolbar">
+      <div class="services-toolbar-actions">
+        <button type="button" class="services-toolbar-btn" title="Nouveau">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+        </button>
+        <button type="button" class="services-toolbar-btn" title="Trier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h10M4 18h6"></path>
+          </svg>
+        </button>
+        <button type="button" class="services-toolbar-btn" title="Affichage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="services-path" aria-label="Chemin">
+        <a href="../index.html#home" class="services-path-crumb">
+          <span aria-hidden="true">⌂</span> Portfolio
+        </a>
+        <span class="services-path-sep" aria-hidden="true">›</span>
+        <span class="services-path-crumb services-path-crumb--current">Services</span>
+      </nav>
+
+      <div class="services-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <span>Rechercher dans : Services</span>
+      </div>
+    </div>
+
+    <main class="services-main">
+      <header class="services-main-header">
+        <h1>Services &amp; procédures</h1>
+        <p>Comment je travaille, étape par étape, et les secteurs où j'interviens le plus souvent.</p>
+      </header>
+
+      <!-- Section 1 : Comment ça fonctionne — quest log (liste + panneau de détail) -->
+      <section class="services-section" id="comment-ca-fonctionne">
+        <div class="services-section-head">
+          <span class="section-tick" aria-hidden="true"></span>
+          <h2>Comment ça fonctionne</h2>
+        </div>
+        <p class="services-section-intro">Chaque projet suit le même parcours en quatre étapes. Clique sur une étape pour voir son détail.</p>
+
+        <div class="quest-log">
+          <ul class="quest-list" role="list">
+            <li>
+              <button type="button" class="quest-list-item is-active"
+                data-tag="Quête principale · Étape 01"
+                data-title="Premier contact"
+                data-desc="On discute de ton projet : objectifs, besoins réels et budget, pour voir si on est un bon match avant d'aller plus loin."
+                data-checklist="Échange initial (appel ou message)|Objectifs et besoins clarifiés|Budget et délais discutés">
+                <span class="quest-list-index">01</span>
+                <span class="quest-list-text">
+                  <span class="quest-list-title">Premier contact</span>
+                  <span class="quest-list-tag">Quête principale</span>
+                </span>
+                <span class="quest-list-marker" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="quest-list-item"
+                data-tag="Quête principale · Étape 02"
+                data-title="Proposition &amp; devis"
+                data-desc="Je prépare une proposition claire : portée du projet, calendrier réaliste et prix, pour qu'on parte sur les mêmes bases."
+                data-checklist="Portée du projet définie|Devis détaillé envoyé|Validation avant le début des travaux">
+                <span class="quest-list-index">02</span>
+                <span class="quest-list-text">
+                  <span class="quest-list-title">Proposition &amp; devis</span>
+                  <span class="quest-list-tag">Quête principale</span>
+                </span>
+                <span class="quest-list-marker" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="quest-list-item"
+                data-tag="Quête principale · Étape 03"
+                data-title="Réalisation"
+                data-desc="Je développe par itérations courtes, avec des points réguliers pour ajuster le tir avant que ça devienne compliqué à changer."
+                data-checklist="Sprints de travail courts|Points de suivi réguliers|Retours intégrés en continu">
+                <span class="quest-list-index">03</span>
+                <span class="quest-list-text">
+                  <span class="quest-list-title">Réalisation</span>
+                  <span class="quest-list-tag">Quête principale</span>
+                </span>
+                <span class="quest-list-marker" aria-hidden="true"></span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="quest-list-item"
+                data-tag="Quête principale · Étape 04"
+                data-title="Livraison &amp; suivi"
+                data-desc="Le projet est livré, testé et documenté, avec un support après la mise en ligne pour régler ce qui pourrait surgir."
+                data-checklist="Tests et validation finale|Documentation remise|Support après la livraison">
+                <span class="quest-list-index">04</span>
+                <span class="quest-list-text">
+                  <span class="quest-list-title">Livraison &amp; suivi</span>
+                  <span class="quest-list-tag">Quête principale</span>
+                </span>
+                <span class="quest-list-marker" aria-hidden="true"></span>
+              </button>
+            </li>
+          </ul>
+
+          <div class="quest-detail">
+            <div>
+              <span class="quest-detail-tag">Quête principale · Étape 01</span>
+              <h3 class="quest-detail-title">Premier contact</h3>
+            </div>
+            <p class="quest-detail-desc">On discute de ton projet : objectifs, besoins réels et budget, pour voir si on est un bon match avant d'aller plus loin.</p>
+            <ul class="quest-checklist">
+              <li>Échange initial (appel ou message)</li>
+              <li>Objectifs et besoins clarifiés</li>
+              <li>Budget et délais discutés</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 : Secteurs d'activité — tuiles simples -->
+      <section class="services-section" id="secteurs-activite">
+        <div class="services-section-head">
+          <span class="section-tick" aria-hidden="true"></span>
+          <h2>Secteurs d'activité</h2>
+        </div>
+        <p class="services-section-intro">Les milieux où j'ai travaillé le plus souvent.</p>
+
+        <div class="sector-grid">
+          <div class="sector-tile">
+            <span class="sector-dot" aria-hidden="true"></span>
+            <span class="sector-label">Hôtellerie</span>
+          </div>
+          <div class="sector-tile">
+            <span class="sector-dot" aria-hidden="true"></span>
+            <span class="sector-label">Gestion de communautés en ligne</span>
+          </div>
+          <div class="sector-tile">
+            <span class="sector-dot" aria-hidden="true"></span>
+            <span class="sector-label">Opérations &amp; gestion d'horaires</span>
+          </div>
+          <div class="sector-tile">
+            <span class="sector-dot" aria-hidden="true"></span>
+            <span class="sector-label">Outils internes &amp; automatisation</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../javascript/quest-log.js"></script>
+</body>
+</html>
