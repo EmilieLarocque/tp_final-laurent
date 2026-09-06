@@ -7,6 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
 </head>
 <body class="services-page">
 
@@ -35,12 +43,12 @@
         </button>
       </div>
 
-      <nav class="services-path" aria-label="Chemin">
-        <a href="../index.html#home" class="services-path-crumb">
+      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+        <a href="../index.html#home" class="text-[var(--svc-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
           <span aria-hidden="true">⌂</span> Portfolio
         </a>
-        <span class="services-path-sep" aria-hidden="true">›</span>
-        <span class="services-path-crumb services-path-crumb--current">Services</span>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <span class="text-[var(--svc-ink)] opacity-100 font-bold">Services</span>
       </nav>
 
       <div class="services-search">
@@ -58,7 +66,39 @@
         <p>Comment je travaille, étape par étape, et les secteurs où j'interviens le plus souvent.</p>
       </header>
 
-      <!-- Section 1 : Comment ça fonctionne — quest log (liste + panneau de détail) -->
+      <!-- Section 1 : Ce que je fais — types de mandats -->
+      <section class="services-section" id="ce-que-je-fais">
+        <div class="services-section-head">
+          <span class="section-tick" aria-hidden="true"></span>
+          <h2>Ce que je fais</h2>
+        </div>
+        <p class="services-section-intro">Les grands types de mandats que je prends en charge.</p>
+
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Sites web vitrines</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Applications web</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Design UI/UX</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Maintenance &amp; support</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Intégration &amp; automatisation</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 : Comment ça fonctionne — quest log (liste + panneau de détail) -->
       <section class="services-section" id="comment-ca-fonctionne">
         <div class="services-section-head">
           <span class="section-tick" aria-hidden="true"></span>
@@ -66,8 +106,8 @@
         </div>
         <p class="services-section-intro">Chaque projet suit le même parcours en quatre étapes. Clique sur une étape pour voir son détail.</p>
 
-        <div class="quest-log">
-          <ul class="quest-list" role="list">
+        <div class="quest-log grid grid-cols-12 gap-4 items-start">
+          <ul class="quest-list col-span-12 md:col-span-4" role="list">
             <li>
               <button type="button" class="quest-list-item is-active"
                 data-tag="Quête principale · Étape 01"
@@ -126,7 +166,7 @@
             </li>
           </ul>
 
-          <div class="quest-detail">
+          <div class="quest-detail col-span-12 md:col-span-8">
             <div>
               <span class="quest-detail-tag">Quête principale · Étape 01</span>
               <h3 class="quest-detail-title">Premier contact</h3>
@@ -141,7 +181,7 @@
         </div>
       </section>
 
-      <!-- Section 2 : Secteurs d'activité — tuiles simples -->
+      <!-- Section 3 : Secteurs d'activité — tuiles simples -->
       <section class="services-section" id="secteurs-activite">
         <div class="services-section-head">
           <span class="section-tick" aria-hidden="true"></span>
@@ -149,22 +189,34 @@
         </div>
         <p class="services-section-intro">Les milieux où j'ai travaillé le plus souvent.</p>
 
-        <div class="sector-grid">
-          <div class="sector-tile">
-            <span class="sector-dot" aria-hidden="true"></span>
-            <span class="sector-label">Hôtellerie</span>
+        <div class="flex flex-wrap gap-3">
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Création de sites web (marketing)</span>
           </div>
-          <div class="sector-tile">
-            <span class="sector-dot" aria-hidden="true"></span>
-            <span class="sector-label">Gestion de communautés en ligne</span>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Hôtellerie</span>
           </div>
-          <div class="sector-tile">
-            <span class="sector-dot" aria-hidden="true"></span>
-            <span class="sector-label">Opérations &amp; gestion d'horaires</span>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Restauration</span>
           </div>
-          <div class="sector-tile">
-            <span class="sector-dot" aria-hidden="true"></span>
-            <span class="sector-label">Outils internes &amp; automatisation</span>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Associatif &amp; OBNL</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Gestion de communautés en ligne</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Opérations &amp; gestion d'horaires</span>
+          </div>
+          <div class="flex items-center gap-[10px] rounded-full border border-[rgba(199,122,92,0.35)] bg-[var(--svc-panel-soft)] px-[18px] py-3">
+            <span class="h-[7px] w-[7px] shrink-0 rounded-full bg-[var(--svc-peach)]" aria-hidden="true"></span>
+            <span class="text-[0.8rem] font-extrabold uppercase tracking-[0.02em] text-[var(--svc-cream)]">Outils internes &amp; automatisation</span>
           </div>
         </div>
       </section>

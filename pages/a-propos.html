@@ -7,6 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: {
+      preflight: false,
+    },
+  };
+</script>
 </head>
 <body class="about-cas">
 
@@ -34,12 +42,12 @@
     </button>
   </div>
 
-  <nav class="topbar-path" aria-label="Chemin">
-    <a href="../index.html#home" class="topbar-path-crumb">
+  <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+    <a href="../index.html#home" class="text-[var(--accent-4)] opacity-70 transition-opacity duration-200 hover:opacity-100">
       <span aria-hidden="true">⌂</span> Portfolio
     </a>
-    <span class="topbar-path-sep" aria-hidden="true">›</span>
-    <span class="topbar-path-crumb topbar-path-crumb--current">À propos</span>
+    <span class="opacity-50" aria-hidden="true">›</span>
+    <span class="text-[var(--accent-4)] opacity-100 font-bold">À propos</span>
   </nav>
 
   <div class="topbar-search">
@@ -51,10 +59,10 @@
   </div>
 </div>
 
-<div class="stage">
+<div class="stage grid grid-cols-12 gap-4">
 
 <!-- VIEWPORT : portrait façon HUD de jeu (badge de niveau, brackets, XP) -->
-  <div class="viewport">
+  <section class="viewport col-span-12 md:col-span-8" aria-label="Profil">
     <div class="portrait-wrap">
       <div class="portrait-frame">
         <img src="../media/sims4-body.png" alt="Avatar 3D stylisé d'Émilie" />
@@ -88,13 +96,18 @@
       </div>
       <span class="xp-value">72%</span>
     </div>
-  </div>
+
+    <a href="cv.html" class="cv-link">
+      <span aria-hidden="true">📄</span> Voir le CV complet
+    </a>
+  </section>
 
   <!-- RIGHT PANEL : statistiques et équipement façon feuille de personnage -->
-  <div class="rightpanel">
+  <div class="rightpanel col-span-12 md:col-span-4">
+    <section class="stats-section" aria-labelledby="stats-title">
     <div class="section-header">
       <span class="section-tick"></span>
-      <h3>Statistiques</h3>
+      <h3 id="stats-title">Statistiques</h3>
     </div>
     <div class="stats-wrap">
       <div class="stat-row">
@@ -119,10 +132,12 @@
         <span class="stat-row-value">95</span>
       </div>
     </div>
+    </section>
 
+    <section class="software-section" aria-labelledby="software-title">
     <div class="section-header">
       <span class="section-tick"></span>
-      <h3>Logiciels</h3>
+      <h3 id="software-title">Logiciels</h3>
     </div>
     <div class="items-row">
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">Figma</span></div>
@@ -131,10 +146,12 @@
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">GitHub</span></div>
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">Trello</span></div>
     </div>
+    </section>
 
+    <section class="languages-section" aria-labelledby="languages-title">
     <div class="section-header">
       <span class="section-tick"></span>
-      <h3>Langages</h3>
+      <h3 id="languages-title">Langages</h3>
     </div>
     <div class="items-row">
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">JavaScript</span></div>
@@ -142,10 +159,11 @@
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">CSS</span></div>
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">Tailwind CSS</span></div>
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">Node.js</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label"></span>Bootstrap</span></div>
+      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Bootstrap</span></div>
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">React</span></div>
       <div class="item-slot"><span class="item-dot"></span><span class="item-label">SQL</span></div>
     </div>
+    </section>
 
     <p class="save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
   </div>

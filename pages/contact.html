@@ -7,6 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
 </head>
 <body class="contact-page">
 
@@ -35,12 +43,12 @@
         </button>
       </div>
 
-      <nav class="contact-path" aria-label="Chemin">
-        <a href="../index.html#home" class="contact-path-crumb">
+      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+        <a href="../index.html#home" class="text-[var(--ct-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
           <span aria-hidden="true">⌂</span> Portfolio
         </a>
-        <span class="contact-path-sep" aria-hidden="true">›</span>
-        <span class="contact-path-crumb contact-path-crumb--current">Contact</span>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <span class="text-[var(--ct-ink)] opacity-100 font-bold">Contact</span>
       </nav>
 
       <div class="contact-search">
@@ -58,10 +66,10 @@
         <p>Une question, un projet, une opportunité ? Écris-moi, je réponds sous 48 heures.</p>
       </header>
 
-      <div class="contact-layout">
+      <div class="contact-layout grid grid-cols-12 gap-5 items-start">
 
         <!-- Coordonnées, façon feuille de personnage (même logique que .rightpanel de a-propos.html) -->
-        <section class="contact-info-panel" aria-labelledby="contact-info-title">
+        <section class="contact-info-panel col-span-12 md:col-span-4" aria-labelledby="contact-info-title">
           <h2 id="contact-info-title" class="contact-panel-title">Coordonnées</h2>
 
           <div class="contact-info-row">
@@ -85,19 +93,55 @@
         </section>
 
         <!-- Formulaire, façon panneau de détail (même logique que .quest-detail de services.html) -->
-        <section class="contact-form-panel" aria-labelledby="contact-form-title">
+        <section class="contact-form-panel col-span-12 md:col-span-8" aria-labelledby="contact-form-title">
           <h2 id="contact-form-title" class="contact-panel-title">Formulaire de contact</h2>
 
           <form class="contact-form" action="#" method="post">
-            <div class="contact-form-row">
-              <div class="contact-field">
+            <div class="contact-form-row grid grid-cols-12 gap-4">
+              <div class="contact-field col-span-12 sm:col-span-6">
                 <label for="contact-name">Nom</label>
                 <input type="text" id="contact-name" name="name" placeholder="Ton nom" autocomplete="name" required>
               </div>
-              <div class="contact-field">
+              <div class="contact-field col-span-12 sm:col-span-6">
                 <label for="contact-email">Email</label>
                 <input type="email" id="contact-email" name="email" placeholder="ton@email.com" autocomplete="email" required>
               </div>
+            </div>
+            <div class="contact-form-row grid grid-cols-12 gap-4">
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-call-app">Appli de visio préférée</label>
+                <input type="text" id="contact-call-app" name="call-app" placeholder="Teams, Discord, Zoom... (optionnel)">
+              </div>
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-company">Entreprise / organisation</label>
+                <input type="text" id="contact-company" name="company" placeholder="(optionnel)" autocomplete="organization">
+              </div>
+            </div>
+            <div class="contact-form-row grid grid-cols-12 gap-4">
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-project-type">Type de projet</label>
+                <select id="contact-project-type" name="project-type" required>
+                  <option value="" disabled selected>Choisir une option</option>
+                  <option value="site-web">Site web</option>
+                  <option value="application">Application</option>
+                  <option value="design">Design / UI</option>
+                  <option value="autre">Autre</option>
+                </select>
+              </div>
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-budget">Budget estimé</label>
+                <select id="contact-budget" name="budget">
+                  <option value="" disabled selected>Choisir une option</option>
+                  <option value="moins-1000">Moins de 1000 $</option>
+                  <option value="1000-3000">1000 $ – 3000 $</option>
+                  <option value="3000-5000">3000 $ – 5000 $</option>
+                  <option value="plus-5000">5000 $ et plus</option>
+                </select>
+              </div>
+            </div>
+            <div class="contact-field">
+              <label for="contact-deadline">Délai souhaité</label>
+              <input type="text" id="contact-deadline" name="deadline" placeholder="Ex. : dans 1 mois, avant décembre...">
             </div>
             <div class="contact-field">
               <label for="contact-message">Message</label>
@@ -110,6 +154,25 @@
         </section>
 
       </div>
+
+      <!-- Ce qui se passe une fois le formulaire envoyé -->
+      <section class="contact-next-panel" aria-labelledby="contact-next-title">
+        <h2 id="contact-next-title" class="contact-panel-title">Après l'envoi</h2>
+        <div class="next-steps">
+          <div class="next-step">
+            <span class="next-step-index">01</span>
+            <p>Tu envoies ton message via le formulaire</p>
+          </div>
+          <div class="next-step">
+            <span class="next-step-index">02</span>
+            <p>Je réponds sous 48 heures, par email</p>
+          </div>
+          <div class="next-step">
+            <span class="next-step-index">03</span>
+            <p>On discute ensemble de la suite</p>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 

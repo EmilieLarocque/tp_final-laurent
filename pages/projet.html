@@ -7,6 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
 </head>
 <body class="explorer-page">
 
@@ -35,12 +43,12 @@
         </button>
       </div>
 
-      <nav class="explorer-path" aria-label="Chemin">
-        <a href="../index.html#home" class="explorer-path-crumb">
+      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+        <a href="../index.html#home" class="text-[var(--exp-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
           <span aria-hidden="true">⌂</span> Portfolio
         </a>
-        <span class="explorer-path-sep" aria-hidden="true">›</span>
-        <span class="explorer-path-crumb explorer-path-crumb--current">Projets</span>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <span class="text-[var(--exp-ink)] opacity-100 font-bold">Projets</span>
       </nav>
 
       <div class="explorer-search">
@@ -77,28 +85,37 @@
           <p>Une sélection de projets réalisés en formation ou en autonomie.</p>
         </header>
 
+        <section class="explorer-group" aria-labelledby="legend-title">
+          <h2 id="legend-title" class="explorer-group-title">Légende</h2>
+          <div class="explorer-legend">
+            <span class="explorer-legend-item"><span aria-hidden="true">🖥️</span> Site web</span>
+            <span class="explorer-legend-item"><span aria-hidden="true">📱</span> Application</span>
+            <span class="explorer-legend-item"><span aria-hidden="true">🎨</span> Design</span>
+          </div>
+        </section>
+
         <section class="explorer-group" id="annee-2026">
           <h2 class="explorer-group-title">2026 <span class="explorer-group-count">(2)</span></h2>
-          <div class="explorer-grid">
-            <article class="explorer-item">
-              <div class="explorer-item-thumb">
-                <span class="explorer-item-icon" aria-hidden="true">🖥️</span>
+          <div class="explorer-grid grid grid-cols-12 gap-4">
+            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
+              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
+                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
               </div>
-              <div class="explorer-item-info">
-                <span class="explorer-item-name">Nom du projet 1</span>
-                <span class="explorer-item-meta">Site web · Août 2026</span>
-                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 1</span>
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Site web · Août 2026</span>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
               </div>
             </article>
 
-            <article class="explorer-item">
-              <div class="explorer-item-thumb">
-                <span class="explorer-item-icon" aria-hidden="true">📱</span>
+            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
+              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-peach)] to-[var(--exp-terracotta)]">
+                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">📱</span>
               </div>
-              <div class="explorer-item-info">
-                <span class="explorer-item-name">Nom du projet 2</span>
-                <span class="explorer-item-meta">Application · Mars 2026</span>
-                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 2</span>
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Application · Mars 2026</span>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
               </div>
             </article>
           </div>
@@ -106,26 +123,26 @@
 
         <section class="explorer-group" id="annee-2025">
           <h2 class="explorer-group-title">2025 <span class="explorer-group-count">(2)</span></h2>
-          <div class="explorer-grid">
-            <article class="explorer-item">
-              <div class="explorer-item-thumb">
-                <span class="explorer-item-icon" aria-hidden="true">🎨</span>
+          <div class="explorer-grid grid grid-cols-12 gap-4">
+            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
+              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-peach)]">
+                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🎨</span>
               </div>
-              <div class="explorer-item-info">
-                <span class="explorer-item-name">Nom du projet 3</span>
-                <span class="explorer-item-meta">Design · Novembre 2025</span>
-                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 3</span>
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Design · Novembre 2025</span>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
               </div>
             </article>
 
-            <article class="explorer-item">
-              <div class="explorer-item-thumb">
-                <span class="explorer-item-icon" aria-hidden="true">🖥️</span>
+            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
+              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
+                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
               </div>
-              <div class="explorer-item-info">
-                <span class="explorer-item-name">Nom du projet 4</span>
-                <span class="explorer-item-meta">Site web · Juin 2025</span>
-                <p class="explorer-item-desc">Courte description du projet : objectif, outils utilisés et résultat.</p>
+              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 4</span>
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Site web · Juin 2025</span>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
               </div>
             </article>
           </div>

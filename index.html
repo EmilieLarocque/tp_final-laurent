@@ -7,6 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
 </head>
 <body>
 
@@ -26,15 +34,15 @@
   </div>
 
   <!-- Easter egg : faux écran bleu, déclenché après 10 clics sur node_modules -->
-  <div id="bsod-screen" class="bsod-screen hidden" role="alertdialog" aria-label="Erreur système" tabindex="-1">
-    <div class="bsod-face">:(</div>
-    <p class="bsod-text">
+  <div id="bsod-screen" class="hidden fixed inset-0 z-[10000] flex flex-col items-start justify-center gap-[22px] bg-[#0078d7] p-[10vw] text-white cursor-pointer" role="alertdialog" aria-label="Erreur système" tabindex="-1">
+    <div class="text-[6rem] font-normal leading-none">:(</div>
+    <p class="max-w-[600px] text-[1.15rem] leading-[1.5]">
       Votre bureau a rencontré un problème et doit redémarrer.<br>
       Nous recueillons simplement quelques informations sur l'erreur, puis nous le redémarrerons pour vous.
     </p>
-    <p class="bsod-progress"><span id="bsod-percent">0</span>&nbsp;% terminé</p>
-    <p class="bsod-stop-code">Code d'arrêt : NODE_MODULES_EXCEEDED_DISK_QUOTA</p>
-    <span class="bsod-hint">Cliquer n'importe où pour continuer</span>
+    <p class="text-base"><span id="bsod-percent">0</span>&nbsp;% terminé</p>
+    <p class="text-base">Code d'arrêt : NODE_MODULES_EXCEEDED_DISK_QUOTA</p>
+    <span class="absolute bottom-10 left-[10vw] text-[0.85rem] opacity-80">Cliquer n'importe où pour continuer</span>
   </div>
 
   <main>
@@ -49,7 +57,7 @@
               </span>
           </div>
 
-          <div class="intro-window-wrap">
+          <section class="intro-window-wrap" aria-labelledby="intro-name">
             <div class="intro-window">
               <div class="intro-window-header">
                 <span class="intro-window-title">moi@portfolio:~</span>
@@ -61,7 +69,7 @@
                 </span>
               </div>
               <div class="intro-window-body">
-                <h1 class="intro-name">Émilie Larocque</h1>
+                <h1 id="intro-name" class="intro-name">Émilie Larocque</h1>
                 <p class="hero-description">
                   Une courte présentation ou phrase d'accroche pour introduire votre univers,
                   votre travail et votre identité.
@@ -102,58 +110,48 @@
                 title="Playlist Spotify"
               ></iframe>
             </div>
-          </div>
+          </section>
         </div>
       </div>
 
       <div class="hero-visual"></div>
 
       <!-- Icônes du bureau : navigation sous forme de dossiers, + l'easter egg node_modules -->
-      <div class="desktop-icons">
-        <a href="#home" class="desktop-icon desktop-icon--active">
-          <img src="media/dossier-ouvert.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">Accueil</span>
+      <nav class="absolute left-[5vw] top-[30px] z-[2] flex flex-col gap-[2px]" aria-label="Navigation du bureau">
+        <a href="#home" class="desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-[rgba(199,122,92,0.4)] bg-[rgba(199,122,92,0.1)] px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]">
+          <img src="media/dossier-ouvert.png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">Accueil</span>
         </a>
-        <a href="pages/a-propos.html" class="open-page desktop-icon" data-title="À propos">
-          <img src="media/dossier.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">À propos</span>
+        <a href="pages/a-propos.html" class="open-page desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" data-title="À propos">
+          <img src="media/dossier.png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">À propos</span>
         </a>
-        <a href="pages/projet.html" class="open-page desktop-icon" data-title="Projets">
-          <img src="media/dossier.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">Projets</span>
-        </a>
-
-        <a href="pages/services.html" class="open-page desktop-icon" data-title="Services">
-          <img src="media/dossier.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">Services</span>
+        <a href="pages/projet.html" class="open-page desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" data-title="Projets">
+          <img src="media/dossier.png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">Projets</span>
         </a>
 
-        <a href="pages/contact.html" class="open-page desktop-icon" data-title="Contact">
-          <img src="media/dossier (1).png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">Contact</span>
+        <a href="pages/services.html" class="open-page desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" data-title="Services">
+          <img src="media/dossier.png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">Services</span>
         </a>
 
-        <button type="button" class="desktop-icon">
-          <img src="media/dossier.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">Licence</span>
-          <span class="desktop-icon-preview">
-            <span class="desktop-icon-preview-bar">licence.txt</span>
-            <span class="desktop-icon-preview-text">© 2026 Émilie Larocque</span>
-            <span class="desktop-icon-preview-text">Tous droits réservés.</span>
-          </span>
+        <a href="pages/contact.html" class="open-page desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" data-title="Contact">
+          <img src="media/dossier (1).png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">Contact</span>
+        </a>
+
+        <button type="button" class="desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" id="node-modules-icon" title="node_modules">
+          <img src="media/dossier.png" alt="" class="mx-auto w-8">
+          <span class="text-[0.7rem] font-semibold leading-[1.15]">node_modules</span>
+          <span class="text-[0.65rem] tabular-nums text-[var(--color-text-muted)]" id="node-modules-size">128 Ko</span>
         </button>
+      </nav>
 
-        <button type="button" class="desktop-icon" id="node-modules-icon" title="node_modules">
-          <img src="media/dossier.png" alt="" class="desktop-icon-img">
-          <span class="desktop-icon-label">node_modules</span>
-          <span class="desktop-icon-size" id="node-modules-size">128 Ko</span>
-        </button>
+      <!-- Widget en direct : calendrier -->
+      <section class="live-widgets" aria-labelledby="live-widgets-title">
+        <h2 id="live-widgets-title" class="live-widgets-title">Ce qui tourne sur mon bureau en ce moment</h2>
 
-        
-      </div>
-
-      <!-- Widget du bureau : indépendant, sans chevauchement avec la fenêtre d'intro -->
-      <div class="desktop-widgets">
         <div class="widget widget-calendar">
           <div class="widget-titlebar">
             <span class="widget-titlebar-title">calendrier.app</span>
@@ -162,10 +160,34 @@
           <div class="widget-calendar-grid" id="calendar-grid"></div>
           <div class="calendar-slots" id="calendar-slots"></div>
         </div>
-      </div>
+      </section>
+
+      <!-- Notifications "méta" du bureau : licence + explication du concept -->
+      <section class="notifications-stack" aria-label="Notifications du bureau">
+        <div class="desktop-about" id="desktop-license">
+          <span class="desktop-about-icon" aria-hidden="true">📄</span>
+          <div class="desktop-about-body">
+            <p class="desktop-about-title">Licence</p>
+            <p class="desktop-about-text">© 2026 Émilie Larocque — Tous droits réservés.</p>
+          </div>
+          <button type="button" class="desktop-about-close" aria-label="Fermer la notification">×</button>
+        </div>
+
+        <div class="desktop-about" id="desktop-about">
+          <span class="desktop-about-icon" aria-hidden="true">🖥️</span>
+          <div class="desktop-about-body">
+            <p class="desktop-about-title">Le savais-tu ?</p>
+            <p class="desktop-about-text">
+              Ce portfolio reprend l'interface d'un bureau Windows. L'icône « node_modules » cache
+              d'ailleurs un easter egg à découvrir.
+            </p>
+          </div>
+          <button type="button" class="desktop-about-close" aria-label="Fermer la notification">×</button>
+        </div>
+      </section>
 
       <!-- Barre des tâches -->
-      <div class="taskbar" id="taskbar">
+      <footer class="taskbar" id="taskbar">
         <div class="taskbar-windows" id="taskbar-windows">
           <button type="button" id="lock-button" class="lock-button" aria-label="Verrouiller l'écran" title="Verrouiller l'écran">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -183,7 +205,7 @@
           </a>
         </div>
         <div class="taskbar-clock" id="taskbar-clock"></div> CA/FR
-      </div>
+      </footer>
 
     </section>
   </main>

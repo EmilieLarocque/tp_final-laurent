@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
+</head>
+<body class="cv-print">
+
+  <div class="print-toolbar">
+    <a href="a-propos.html" class="print-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"></path>
+      </svg>
+      Retour à À propos
+    </a>
+    <button type="button" class="print-download-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9V2h12v7"></path>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <path d="M6 14h12v8H6z"></path>
+      </svg>
+      Imprimer / PDF
+    </button>
+  </div>
+
+  <div class="print-sheet">
+
+    <header class="print-header">
+      <div>
+        <div class="print-header-eyebrow">⌂ Portfolio › CV</div>
+        <h1>Curriculum vitae</h1>
+      </div>
+      <p>Développeuse front-end · Niveau créatif · Trois-Rivières, QC</p>
+    </header>
+
+    <section>
+      <div class="print-section-head">
+        <span class="section-tick" aria-hidden="true"></span>
+        <h2>Profil</h2>
+      </div>
+      <p class="print-section-intro">
+        Développeuse front-end en formation, curieuse et orientée détails. À l'aise autant sur le
+        code que sur le design d'interface, j'aime transformer une idée en expérience concrète et
+        soignée.
+      </p>
+    </section>
+
+    <section>
+      <div class="print-section-head">
+        <span class="section-tick" aria-hidden="true"></span>
+        <h2>Compétences</h2>
+      </div>
+      <p class="print-section-intro">Langages, frameworks et outils utilisés au quotidien.</p>
+
+      <div class="print-sector-grid">
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">JavaScript</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">HTML</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">CSS</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Tailwind CSS</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Node.js</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Bootstrap</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">React</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">SQL</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Figma</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Git &amp; GitHub</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">VS Code</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Trello</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="print-section-head">
+        <span class="section-tick" aria-hidden="true"></span>
+        <h2>Coordonnées</h2>
+      </div>
+      <div class="print-sector-grid">
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">contact@exemple.com</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">Trois-Rivières, QC — à distance</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">LinkedIn</span></div>
+        <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">GitHub</span></div>
+      </div>
+    </section>
+
+    <footer class="print-footer">
+      <span>Portfolio — Curriculum vitae</span>
+      <span>Version imprimable</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

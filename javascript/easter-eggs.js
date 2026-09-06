@@ -88,3 +88,20 @@ function triggerBSOD() {
   bsodScreen.addEventListener("click", dismissBSOD);
   document.addEventListener("keydown", dismissOnEscape);
 }
+
+/* =========================================================
+   NOTIFICATIONS DU BUREAU (licence, à propos de ce bureau)
+   Se ferment au clic, comme de vraies notifs Windows.
+========================================================= */
+
+document.querySelectorAll(".desktop-about").forEach(function (notification) {
+  const closeButton = notification.querySelector(".desktop-about-close");
+  if (!closeButton) return;
+
+  closeButton.addEventListener("click", function () {
+    notification.classList.add("is-dismissed");
+    notification.addEventListener("animationend", function () {
+      notification.style.display = "none";
+    }, { once: true });
+  });
+});
