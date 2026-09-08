@@ -45,9 +45,9 @@ if (nodeModulesIcon) {
     nodeModulesClicks++;
 
     // On relance l'animation de secousse même si elle vient de jouer
-    nodeModulesIcon.classList.remove("shake");
+    nodeModulesIcon.classList.remove("desktop-icon--shake");
     void nodeModulesIcon.offsetWidth;
-    nodeModulesIcon.classList.add("shake");
+    nodeModulesIcon.classList.add("desktop-icon--shake");
 
     if (nodeModulesClicks >= CLICKS_BEFORE_CRASH) {
       triggerBSOD();
@@ -99,7 +99,7 @@ document.querySelectorAll(".desktop-about").forEach(function (notification) {
   if (!closeButton) return;
 
   closeButton.addEventListener("click", function () {
-    notification.classList.add("is-dismissed");
+    notification.classList.add("desktop-about--dismissed");
     notification.addEventListener("animationend", function () {
       notification.style.display = "none";
     }, { once: true });

@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
   items.forEach(function (item) {
     item.addEventListener("click", function () {
       items.forEach(function (other) {
-        other.classList.remove("is-active");
+        other.classList.remove("quest-list-item--active");
       });
-      item.classList.add("is-active");
+      item.classList.add("quest-list-item--active");
 
       detailTag.textContent = item.dataset.tag;
       detailTitle.textContent = item.dataset.title;

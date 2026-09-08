@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sélection de projets réalisés par Émilie Larocque en formation ou en autonomie.">
   <title>Projets — Portfolio</title>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
@@ -21,19 +26,19 @@
   <div class="explorer">
 
     <!-- Barre d'outils façon explorateur de fichiers -->
-    <div class="explorer-toolbar">
-      <div class="explorer-toolbar-actions">
-        <button type="button" class="explorer-toolbar-btn" title="Nouveau">
+    <div class="toolbar">
+      <div class="toolbar__actions">
+        <button type="button" class="toolbar__btn" title="Nouveau">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12h14"></path>
           </svg>
         </button>
-        <button type="button" class="explorer-toolbar-btn" title="Trier">
+        <button type="button" class="toolbar__btn" title="Trier">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 6h16M4 12h10M4 18h6"></path>
           </svg>
         </button>
-        <button type="button" class="explorer-toolbar-btn" title="Affichage">
+        <button type="button" class="toolbar__btn" title="Affichage">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1"></rect>
             <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -51,7 +56,7 @@
         <span class="text-[var(--exp-ink)] opacity-100 font-bold">Projets</span>
       </nav>
 
-      <div class="explorer-search">
+      <div class="toolbar__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="M21 21l-4.35-4.35"></path>
@@ -71,11 +76,6 @@
             2026
             <span class="explorer-nav-count">(2)</span>
           </a>
-          <a href="#annee-2025" class="explorer-nav-item">
-            <span class="explorer-nav-icon" aria-hidden="true">🗓️</span>
-            2025
-            <span class="explorer-nav-count">(2)</span>
-          </a>
         </nav>
       </aside>
 
@@ -87,69 +87,53 @@
 
         <section class="explorer-group" aria-labelledby="legend-title">
           <h2 id="legend-title" class="explorer-group-title">Légende</h2>
-          <div class="explorer-legend">
-            <span class="explorer-legend-item"><span aria-hidden="true">🖥️</span> Site web</span>
-            <span class="explorer-legend-item"><span aria-hidden="true">📱</span> Application</span>
-            <span class="explorer-legend-item"><span aria-hidden="true">🎨</span> Design</span>
+          <div class="explorer-legend" role="group" aria-label="Filtrer les projets par catégorie">
+            <button type="button" class="explorer-legend-item" data-filter="site-web" aria-pressed="false"><span aria-hidden="true">🖥️</span> Site web</button>
+            <button type="button" class="explorer-legend-item" data-filter="application" aria-pressed="false"><span aria-hidden="true">📱</span> Application</button>
           </div>
         </section>
 
-        <section class="explorer-group" id="annee-2026">
+        <section class="explorer-group" id="annee-2026" data-project-group>
           <h2 class="explorer-group-title">2026 <span class="explorer-group-count">(2)</span></h2>
           <div class="explorer-grid grid grid-cols-12 gap-4">
+            <a href="projet-1.html" class="contents" data-category="site-web">
             <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
               <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
                 <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
               </div>
               <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
-                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 1</span>
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Ce portfolio (bureau Windows interactif)</span>
                 <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Site web · Août 2026</span>
-                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Interface de bureau Windows recréée en HTML/CSS/JS avec fenêtres, barre des tâches et widgets fonctionnels.</p>
               </div>
             </article>
+            </a>
 
+            <a href="projet-2.html" class="contents" data-category="application">
             <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
               <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-peach)] to-[var(--exp-terracotta)]">
                 <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">📱</span>
               </div>
               <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
-                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 2</span>
+                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Gestionnaire de tâches</span>
                 <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Application · Mars 2026</span>
-                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
+                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Application web construite avec React et Node.js, avec une base de données SQL pour la persistance.</p>
               </div>
             </article>
-          </div>
-        </section>
-
-        <section class="explorer-group" id="annee-2025">
-          <h2 class="explorer-group-title">2025 <span class="explorer-group-count">(2)</span></h2>
-          <div class="explorer-grid grid grid-cols-12 gap-4">
-            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
-              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-peach)]">
-                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🎨</span>
-              </div>
-              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
-                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 3</span>
-                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Design · Novembre 2025</span>
-                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
-              </div>
-            </article>
-
-            <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
-              <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
-                <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
-              </div>
-              <div class="flex flex-col gap-1 px-3 pt-[10px] pb-[14px]">
-                <span class="text-[0.82rem] font-bold text-[var(--exp-cream)]">Nom du projet 4</span>
-                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-[var(--exp-terracotta)]">Site web · Juin 2025</span>
-                <p class="mt-1 text-[0.78rem] leading-[1.5] text-[rgba(243,233,220,0.6)]">Courte description du projet : objectif, outils utilisés et résultat.</p>
-              </div>
-            </article>
+            </a>
           </div>
         </section>
       </main>
     </div>
   </div>
 
+  <script src="../javascript/project-filter.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
 </body>
 </html>

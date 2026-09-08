@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="À propos d'Émilie Larocque : profil, compétences et outils de développement front-end.">
 <title>À propos — Portfolio</title>
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#d000ff">
+<link rel="icon" href="../icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="../icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
@@ -20,19 +25,19 @@
 
 <!-- En-tête façon explorateur de fichiers (même style que pages/projet.html),
      séparé du contenu de .stage. -->
-<div class="topbar">
-  <div class="topbar-actions">
-    <button type="button" class="topbar-icon-btn" title="Nouveau">
+<div class="toolbar toolbar--static">
+  <div class="toolbar__actions">
+    <button type="button" class="toolbar__btn" title="Nouveau">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 5v14M5 12h14"></path>
       </svg>
     </button>
-    <button type="button" class="topbar-icon-btn" title="Trier">
+    <button type="button" class="toolbar__btn" title="Trier">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4 6h16M4 12h10M4 18h6"></path>
       </svg>
     </button>
-    <button type="button" class="topbar-icon-btn" title="Affichage">
+    <button type="button" class="toolbar__btn" title="Affichage">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="3" width="7" height="7" rx="1"></rect>
         <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -50,7 +55,7 @@
     <span class="text-[var(--accent-4)] opacity-100 font-bold">À propos</span>
   </nav>
 
-  <div class="topbar-search">
+  <div class="toolbar__search">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"></circle>
       <path d="M21 21l-4.35-4.35"></path>
@@ -59,7 +64,7 @@
   </div>
 </div>
 
-<div class="stage grid grid-cols-12 gap-4">
+<main class="stage grid grid-cols-12 gap-4">
 
 <!-- VIEWPORT : portrait façon HUD de jeu (badge de niveau, brackets, XP) -->
   <section class="viewport col-span-12 md:col-span-8" aria-label="Profil">
@@ -77,19 +82,19 @@
       </div>
     </div>
 
-    <div class="profile-name">Émilie</div>
+    <h1 class="profile-name">Émilie</h1>
     <div class="profile-subtitle">Développeuse front-end · Niveau créatif</div>
 
     <div class="xp-row">
       <span class="xp-label">XP</span>
       <div class="xp-segments">
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
-        <span class="xp-segment is-filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
+        <span class="xp-segment xp-segment--filled"></span>
         <span class="xp-segment"></span>
         <span class="xp-segment"></span>
         <span class="xp-segment"></span>
@@ -105,29 +110,29 @@
   <!-- RIGHT PANEL : statistiques et équipement façon feuille de personnage -->
   <div class="rightpanel col-span-12 md:col-span-4">
     <section class="stats-section" aria-labelledby="stats-title">
-    <div class="section-header">
-      <span class="section-tick"></span>
+    <div class="section-head section-head--divider">
+      <span class="section-head__tick"></span>
       <h3 id="stats-title">Statistiques</h3>
     </div>
     <div class="stats-wrap">
       <div class="stat-row">
         <span class="stat-row-label">Créativité</span>
         <div class="stat-segments">
-          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
         </div>
         <span class="stat-row-value">82</span>
       </div>
       <div class="stat-row">
         <span class="stat-row-label">Rigueur</span>
         <div class="stat-segments">
-          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
         </div>
         <span class="stat-row-value">70</span>
       </div>
       <div class="stat-row">
         <span class="stat-row-label">Curiosité</span>
         <div class="stat-segments">
-          <span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment is-filled"></span><span class="stat-segment"></span>
+          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span>
         </div>
         <span class="stat-row-value">95</span>
       </div>
@@ -135,8 +140,8 @@
     </section>
 
     <section class="software-section" aria-labelledby="software-title">
-    <div class="section-header">
-      <span class="section-tick"></span>
+    <div class="section-head section-head--divider">
+      <span class="section-head__tick"></span>
       <h3 id="software-title">Logiciels</h3>
     </div>
     <div class="items-row">
@@ -149,8 +154,8 @@
     </section>
 
     <section class="languages-section" aria-labelledby="languages-title">
-    <div class="section-header">
-      <span class="section-tick"></span>
+    <div class="section-head section-head--divider">
+      <span class="section-head__tick"></span>
       <h3 id="languages-title">Langages</h3>
     </div>
     <div class="items-row">
@@ -168,9 +173,14 @@
     <p class="save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
   </div>
 
-  </div>
+</main>
 
-</div>
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
 </body>
 </html>

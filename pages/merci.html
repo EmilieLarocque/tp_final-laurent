@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Confirmation d'envoi du formulaire de contact.">
+  <title>Message envoyé — Portfolio</title>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
+</head>
+<body class="contact-page">
+
+  <div class="contact-shell">
+
+    <!-- Barre d'outils façon explorateur de fichiers (même style que pages/contact.html) -->
+    <div class="toolbar">
+      <div class="toolbar__actions">
+        <button type="button" class="toolbar__btn" title="Nouveau">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+        </button>
+        <button type="button" class="toolbar__btn" title="Trier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h10M4 18h6"></path>
+          </svg>
+        </button>
+        <button type="button" class="toolbar__btn" title="Affichage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+        <a href="../index.html#home" class="text-[var(--ct-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
+          <span aria-hidden="true">⌂</span> Portfolio
+        </a>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <a href="contact.html" class="text-[var(--ct-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">Contact</a>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <span class="text-[var(--ct-ink)] opacity-100 font-bold">Message envoyé</span>
+      </nav>
+
+      <div class="toolbar__search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <span>Rechercher dans : Contact</span>
+      </div>
+    </div>
+
+    <main class="contact-main">
+      <header class="contact-main-header">
+        <h1 id="merci-title">Message envoyé !</h1>
+        <p id="merci-subtitle">Merci de m'avoir écrit. Je te réponds sous 48 heures, par email.</p>
+      </header>
+
+      <div class="contact-layout grid grid-cols-12 gap-5 items-start">
+
+        <section class="contact-info-panel col-span-12 md:col-span-4" aria-labelledby="merci-summary-title">
+          <h2 id="merci-summary-title" class="contact-panel-title">Résumé</h2>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Statut</span>
+            <span class="contact-info-value">Envoyé avec succès</span>
+          </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Délai de réponse</span>
+            <span class="contact-info-value">48 heures ouvrables</span>
+          </div>
+          <div class="contact-info-row">
+            <span class="contact-info-label">Prochaine étape</span>
+            <span class="contact-info-value">Surveille ta boîte courriel</span>
+          </div>
+        </section>
+
+        <section class="contact-form-panel col-span-12 md:col-span-8" aria-labelledby="merci-links-title">
+          <h2 id="merci-links-title" class="contact-panel-title">En attendant</h2>
+          <div class="grid grid-cols-12 gap-4">
+            <a href="../index.html#home" class="col-span-12 sm:col-span-4 flex flex-col items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.08)] bg-[var(--ct-panel)] px-4 py-6 text-center no-underline text-[var(--ct-cream)] transition-transform duration-200 hover:-translate-y-[3px]">
+              <span class="text-[1.6rem]" aria-hidden="true">⌂</span>
+              <span class="text-[0.85rem] font-bold">Retour à l'accueil</span>
+            </a>
+            <a href="projet.html" class="col-span-12 sm:col-span-4 flex flex-col items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.08)] bg-[var(--ct-panel)] px-4 py-6 text-center no-underline text-[var(--ct-cream)] transition-transform duration-200 hover:-translate-y-[3px]">
+              <span class="text-[1.6rem]" aria-hidden="true">🖥️</span>
+              <span class="text-[0.85rem] font-bold">Voir mes projets</span>
+            </a>
+            <a href="cv.html" class="col-span-12 sm:col-span-4 flex flex-col items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.08)] bg-[var(--ct-panel)] px-4 py-6 text-center no-underline text-[var(--ct-cream)] transition-transform duration-200 hover:-translate-y-[3px]">
+              <span class="text-[1.6rem]" aria-hidden="true">📄</span>
+              <span class="text-[0.85rem] font-bold">Consulter mon CV</span>
+            </a>
+          </div>
+
+          <p class="contact-save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
+        </section>
+
+      </div>
+
+      <!-- Rappel des étapes après l'envoi, identique à pages/contact.html -->
+      <section class="contact-next-panel" aria-labelledby="merci-next-title">
+        <h2 id="merci-next-title" class="contact-panel-title">Et maintenant ?</h2>
+        <div class="next-steps">
+          <div class="next-step">
+            <span class="next-step-index">01</span>
+            <p>Je lis ton message</p>
+          </div>
+          <div class="next-step">
+            <span class="next-step-index">02</span>
+            <p>Je te réponds par email sous 48 heures</p>
+          </div>
+          <div class="next-step">
+            <span class="next-step-index">03</span>
+            <p>On discute ensemble de la suite</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Message d'accueil personnalisé si contact-form.js a mémorisé le nom avant la redirection.
+    try {
+      const name = sessionStorage.getItem('contact-name');
+      if (name) {
+        document.getElementById('merci-title').textContent = `Merci, ${name} !`;
+        sessionStorage.removeItem('contact-name');
+      }
+    } catch (err) {
+      // sessionStorage indisponible (navigation privée, etc.) : on garde le titre générique.
+    }
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
+</body>
+</html>

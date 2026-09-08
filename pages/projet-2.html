@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestionnaire de tâches développé avec React, Node.js et une base de données SQL.">
+  <title>Gestionnaire de tâches — Portfolio</title>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false,
+      },
+    };
+  </script>
+</head>
+<body class="explorer-page">
+
+  <div class="explorer">
+
+    <!-- Barre d'outils façon explorateur de fichiers (même style que pages/projet.html) -->
+    <div class="toolbar">
+      <div class="toolbar__actions">
+        <button type="button" class="toolbar__btn" title="Nouveau">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+        </button>
+        <button type="button" class="toolbar__btn" title="Trier">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h10M4 18h6"></path>
+          </svg>
+        </button>
+        <button type="button" class="toolbar__btn" title="Affichage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+        <a href="../index.html#home" class="text-[var(--exp-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
+          <span aria-hidden="true">⌂</span> Portfolio
+        </a>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <a href="projet.html" class="text-[var(--exp-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">Projets</a>
+        <span class="opacity-50" aria-hidden="true">›</span>
+        <span class="text-[var(--exp-ink)] opacity-100 font-bold">Gestionnaire de tâches</span>
+      </nav>
+
+      <div class="toolbar__search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <span>Rechercher dans : Projets</span>
+      </div>
+    </div>
+
+    <div class="explorer-body">
+      <main class="explorer-main">
+        <header class="explorer-main-header">
+          <h1>Gestionnaire de tâches</h1>
+          <p>Application · Mars 2026</p>
+        </header>
+
+        <section aria-labelledby="apercu-title">
+          <h2 id="apercu-title" class="explorer-group-title">Aperçu</h2>
+          <div class="flex aspect-[16/9] max-w-[480px] items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-[var(--exp-peach)] to-[var(--exp-terracotta)] mb-4">
+            <span class="text-[4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">📱</span>
+          </div>
+          <p class="text-[0.9rem] leading-[1.6] text-[rgba(243,233,220,0.75)]">Application web de gestion de tâches permettant de créer des listes, assigner des priorités et suivre l'avancement en temps réel. Le frontend React communique avec une API Node.js, et les données sont persistées dans une base SQL.</p>
+        </section>
+
+        <section class="mt-8" aria-labelledby="tech-title">
+          <h2 id="tech-title" class="explorer-group-title">Technologies utilisées</h2>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">React</span>
+            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">Node.js</span>
+            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">SQL</span>
+            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">JavaScript</span>
+          </div>
+        </section>
+
+        <section class="mt-8" aria-labelledby="links-title">
+          <h2 id="links-title" class="explorer-group-title">Liens</h2>
+          <div class="flex flex-wrap gap-3">
+            <a href="#" class="inline-flex items-center gap-2 rounded-full bg-[var(--exp-terracotta)] px-4 py-2 text-[0.8rem] font-bold text-[var(--exp-ink)] no-underline transition-transform duration-200 hover:-translate-y-[2px]">Voir le site</a>
+            <a href="#" class="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-4 py-2 text-[0.8rem] font-bold text-[var(--exp-cream)] no-underline transition-transform duration-200 hover:-translate-y-[2px]">Code source</a>
+            <a href="projet.html" class="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.08)] px-4 py-2 text-[0.8rem] font-bold text-[var(--exp-cream)] no-underline transition-transform duration-200 hover:-translate-y-[2px]">← Retour aux projets</a>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
+</body>
+</html>

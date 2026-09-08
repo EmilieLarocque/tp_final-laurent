@@ -69,19 +69,30 @@ loadWeather();
 
 const WEEKDAYS = ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"];
 
-// Créneaux dispo/pas dispo par date (format "AAAA-MM-JJ").
-// Exemple à remplacer par tes vraies disponibilités.
-const AVAILABILITY = {
-  "2026-08-19": [
+// Génère des créneaux d'exemple pour les 3 prochains jours ouvrables, calculés à
+// partir d'aujourd'hui (plutôt que des dates codées en dur qui finissent toujours
+// par tomber dans le passé). Ajuste les heures/disponibilités selon tes vraies
+// disponibilités.
+function buildAvailability() {
+  const slotTemplate = [
     { time: "09:00", available: true },
-    { time: "11:00", available: false },
-    { time: "14:00", available: true },
-  ],
-  "2026-08-20": [
-    { time: "10:00", available: false },
-    { time: "16:00", available: true },
-  ],
-};
+    { time: "14:00", available: false },
+  ];
+  const availability = {};
+  const cursor = new Date();
+  let daysAdded = 0;
+  while (daysAdded < 3) {
+    cursor.setDate(cursor.getDate() + 1);
+    const weekday = cursor.getDay(); // 0 = dimanche, 6 = samedi
+    if (weekday === 0 || weekday === 6) continue;
+    const dateKey = formatDateKey(cursor.getFullYear(), cursor.getMonth(), cursor.getDate());
+    availability[dateKey] = slotTemplate.map((slot) => ({ ...slot }));
+    daysAdded++;
+  }
+  return availability;
+}
+
+const AVAILABILITY = buildAvailability();
 
 function renderCalendar() {
   const header = document.getElementById("calendar-header");
@@ -122,11 +133,11 @@ function renderCalendar() {
     dayCell.dataset.date = dateKey;
 
     if (day === today.getDate()) {
-      dayCell.classList.add("today");
+      dayCell.classList.add("calendar-day--today");
     }
 
     if (AVAILABILITY[dateKey]) {
-      dayCell.classList.add("has-slots");
+      dayCell.classList.add("calendar-day--has-slots");
     }
 
     dayCell.addEventListener("click", function () {
@@ -150,13 +161,13 @@ function formatDateKey(year, month, day) {
 function selectDay(dateKey) {
   const slotsPanel = document.getElementById("calendar-slots");
 
-  document.querySelectorAll(".calendar-day.selected").forEach(function (cell) {
-    cell.classList.remove("selected");
+  document.querySelectorAll(".calendar-day--selected").forEach(function (cell) {
+    cell.classList.remove("calendar-day--selected");
   });
 
   const selectedCell = document.querySelector(`.calendar-day[data-date="${dateKey}"]`);
   if (selectedCell) {
-    selectedCell.classList.add("selected");
+    selectedCell.classList.add("calendar-day--selected");
   }
 
   const slots = AVAILABILITY[dateKey];
@@ -168,7 +179,7 @@ function selectDay(dateKey) {
 
   slotsPanel.innerHTML = slots
     .map(function (slot) {
-      const status = slot.available ? "available" : "unavailable";
+      const status = slot.available ? "calendar-slot--available" : "calendar-slot--unavailable";
       const label = slot.available ? "Dispo" : "Pris";
       return `
         <div class="calendar-slot ${status}">

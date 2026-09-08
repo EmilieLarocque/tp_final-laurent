@@ -36,9 +36,9 @@ function createWindow(url, title) {
     <div class="window-header">
       <div class="window-title">${title}</div>
       <div class="window-controls">
-        <button type="button" class="window-control minimize" title="Réduire">−</button>
-        <button type="button" class="window-control maximize" title="Agrandir">□</button>
-        <button type="button" class="window-control close" title="Fermer">×</button>
+        <button type="button" class="window-control window-control--minimize" title="Réduire">−</button>
+        <button type="button" class="window-control window-control--maximize" title="Agrandir">□</button>
+        <button type="button" class="window-control window-control--close" title="Fermer">×</button>
       </div>
     </div>
     <div class="window-content">
@@ -57,24 +57,24 @@ function createWindow(url, title) {
   });
 
   const header = windowElement.querySelector(".window-header");
-  const minimizeButton = windowElement.querySelector(".minimize");
-  const maximizeButton = windowElement.querySelector(".maximize");
-  const closeButton = windowElement.querySelector(".close");
+  const minimizeButton = windowElement.querySelector(".window-control--minimize");
+  const maximizeButton = windowElement.querySelector(".window-control--maximize");
+  const closeButton = windowElement.querySelector(".window-control--close");
 
   minimizeButton.addEventListener("click", function (event) {
     event.stopPropagation();
-    windowElement.classList.toggle("minimized");
+    windowElement.classList.toggle("window--minimized");
     syncTaskbar();
   });
 
   maximizeButton.addEventListener("click", function (event) {
     event.stopPropagation();
-    windowElement.classList.toggle("maximized");
+    windowElement.classList.toggle("window--maximized");
   });
 
   closeButton.addEventListener("click", function (event) {
     event.stopPropagation();
-    windowElement.classList.add("closing");
+    windowElement.classList.add("window--closing");
     windowElement.taskbarButton.remove();
 
     // On attend la fin de l'animation CSS (0.22s) avant de retirer l'élément
@@ -115,9 +115,9 @@ function bringToFront(windowElement) {
   windowElement.style.zIndex = topZIndex;
 
   document.querySelectorAll(".window").forEach(function (item) {
-    item.classList.remove("active");
+    item.classList.remove("window--active");
   });
-  windowElement.classList.add("active");
+  windowElement.classList.add("window--active");
 
   syncTaskbar();
 }
@@ -129,7 +129,7 @@ function makeDraggable(windowElement, header, desktop) {
 
   header.addEventListener("mousedown", function (event) {
     if (event.target.closest(".window-controls")) return;
-    if (windowElement.classList.contains("maximized")) return;
+    if (windowElement.classList.contains("window--maximized")) return;
 
     dragging = true;
     bringToFront(windowElement);
@@ -182,11 +182,11 @@ function createTaskbarButton(windowElement, title) {
 }
 
 function handleTaskbarClick(windowElement) {
-  if (windowElement.classList.contains("minimized")) {
-    windowElement.classList.remove("minimized");
+  if (windowElement.classList.contains("window--minimized")) {
+    windowElement.classList.remove("window--minimized");
     bringToFront(windowElement);
-  } else if (windowElement.classList.contains("active")) {
-    windowElement.classList.add("minimized");
+  } else if (windowElement.classList.contains("window--active")) {
+    windowElement.classList.add("window--minimized");
     syncTaskbar();
   } else {
     bringToFront(windowElement);
@@ -197,10 +197,10 @@ function handleTaskbarClick(windowElement) {
 function syncTaskbar() {
   document.querySelectorAll(".window").forEach(function (windowItem) {
     const isFocused =
-      windowItem.classList.contains("active") &&
-      !windowItem.classList.contains("minimized");
+      windowItem.classList.contains("window--active") &&
+      !windowItem.classList.contains("window--minimized");
 
-    windowItem.taskbarButton.classList.toggle("active", isFocused);
+    windowItem.taskbarButton.classList.toggle("taskbar-window--active", isFocused);
   });
 }
 

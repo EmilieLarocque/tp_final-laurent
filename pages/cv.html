@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curriculum vitae d'Émilie Larocque, développeuse front-end en formation.">
   <title>CV — Portfolio</title>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
@@ -19,13 +24,13 @@
 <body class="cv-print">
 
   <div class="print-toolbar">
-    <a href="a-propos.html" class="print-back">
+    <a href="a-propos.html" class="print-toolbar__back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M15 18l-6-6 6-6"></path>
       </svg>
       Retour à À propos
     </a>
-    <button type="button" class="print-download-btn" onclick="window.print()">
+    <button type="button" class="print-toolbar__download-btn" id="print-download-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9V2h12v7"></path>
         <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
@@ -45,9 +50,10 @@
       <p>Développeuse front-end · Niveau créatif · Trois-Rivières, QC</p>
     </header>
 
+    <main>
     <section>
-      <div class="print-section-head">
-        <span class="section-tick" aria-hidden="true"></span>
+      <div class="section-head section-head--print">
+        <span class="section-head__tick" aria-hidden="true"></span>
         <h2>Profil</h2>
       </div>
       <p class="print-section-intro">
@@ -58,8 +64,8 @@
     </section>
 
     <section>
-      <div class="print-section-head">
-        <span class="section-tick" aria-hidden="true"></span>
+      <div class="section-head section-head--print">
+        <span class="section-head__tick" aria-hidden="true"></span>
         <h2>Compétences</h2>
       </div>
       <p class="print-section-intro">Langages, frameworks et outils utilisés au quotidien.</p>
@@ -81,8 +87,8 @@
     </section>
 
     <section>
-      <div class="print-section-head">
-        <span class="section-tick" aria-hidden="true"></span>
+      <div class="section-head section-head--print">
+        <span class="section-head__tick" aria-hidden="true"></span>
         <h2>Coordonnées</h2>
       </div>
       <div class="print-sector-grid">
@@ -92,6 +98,7 @@
         <div class="print-sector-tile"><span class="print-sector-dot" aria-hidden="true"></span><span class="print-sector-label">GitHub</span></div>
       </div>
     </section>
+    </main>
 
     <footer class="print-footer">
       <span>Portfolio — Curriculum vitae</span>
@@ -100,5 +107,15 @@
 
   </div>
 
+  <script>
+    document.getElementById('print-download-btn').addEventListener('click', () => window.print());
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
 </body>
 </html>

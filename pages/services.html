@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Services offerts par Émilie Larocque et déroulement type d'un projet, du premier contact à la livraison.">
   <title>Services — Portfolio</title>
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
@@ -20,20 +25,20 @@
 
   <div class="services">
 
-    <!-- Barre d'outils façon explorateur de fichiers, même langage que .topbar / .explorer-toolbar -->
-    <div class="services-toolbar">
-      <div class="services-toolbar-actions">
-        <button type="button" class="services-toolbar-btn" title="Nouveau">
+    <!-- Barre d'outils façon explorateur de fichiers (bloc BEM .toolbar partagé avec les autres pages) -->
+    <div class="toolbar">
+      <div class="toolbar__actions">
+        <button type="button" class="toolbar__btn" title="Nouveau">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12h14"></path>
           </svg>
         </button>
-        <button type="button" class="services-toolbar-btn" title="Trier">
+        <button type="button" class="toolbar__btn" title="Trier">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 6h16M4 12h10M4 18h6"></path>
           </svg>
         </button>
-        <button type="button" class="services-toolbar-btn" title="Affichage">
+        <button type="button" class="toolbar__btn" title="Affichage">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1"></rect>
             <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -51,7 +56,7 @@
         <span class="text-[var(--svc-ink)] opacity-100 font-bold">Services</span>
       </nav>
 
-      <div class="services-search">
+      <div class="toolbar__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="M21 21l-4.35-4.35"></path>
@@ -68,8 +73,8 @@
 
       <!-- Section 1 : Ce que je fais — types de mandats -->
       <section class="services-section" id="ce-que-je-fais">
-        <div class="services-section-head">
-          <span class="section-tick" aria-hidden="true"></span>
+        <div class="section-head">
+          <span class="section-head__tick" aria-hidden="true"></span>
           <h2>Ce que je fais</h2>
         </div>
         <p class="services-section-intro">Les grands types de mandats que je prends en charge.</p>
@@ -100,8 +105,8 @@
 
       <!-- Section 2 : Comment ça fonctionne — quest log (liste + panneau de détail) -->
       <section class="services-section" id="comment-ca-fonctionne">
-        <div class="services-section-head">
-          <span class="section-tick" aria-hidden="true"></span>
+        <div class="section-head">
+          <span class="section-head__tick" aria-hidden="true"></span>
           <h2>Comment ça fonctionne</h2>
         </div>
         <p class="services-section-intro">Chaque projet suit le même parcours en quatre étapes. Clique sur une étape pour voir son détail.</p>
@@ -109,7 +114,7 @@
         <div class="quest-log grid grid-cols-12 gap-4 items-start">
           <ul class="quest-list col-span-12 md:col-span-4" role="list">
             <li>
-              <button type="button" class="quest-list-item is-active"
+              <button type="button" class="quest-list-item quest-list-item--active"
                 data-tag="Quête principale · Étape 01"
                 data-title="Premier contact"
                 data-desc="On discute de ton projet : objectifs, besoins réels et budget, pour voir si on est un bon match avant d'aller plus loin."
@@ -183,8 +188,8 @@
 
       <!-- Section 3 : Secteurs d'activité — tuiles simples -->
       <section class="services-section" id="secteurs-activite">
-        <div class="services-section-head">
-          <span class="section-tick" aria-hidden="true"></span>
+        <div class="section-head">
+          <span class="section-head__tick" aria-hidden="true"></span>
           <h2>Secteurs d'activité</h2>
         </div>
         <p class="services-section-intro">Les milieux où j'ai travaillé le plus souvent.</p>
@@ -224,5 +229,12 @@
   </div>
 
   <script src="../javascript/quest-log.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
 </body>
 </html>

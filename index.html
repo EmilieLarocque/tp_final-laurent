@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio d'Émilie Larocque, développeuse front-end en formation — un bureau Windows interactif construit en HTML, CSS et JavaScript.">
   <title>Portfolio — Émilie Larocque</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#d000ff">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -71,8 +76,9 @@
               <div class="intro-window-body">
                 <h1 id="intro-name" class="intro-name">Émilie Larocque</h1>
                 <p class="hero-description">
-                  Une courte présentation ou phrase d'accroche pour introduire votre univers,
-                  votre travail et votre identité.
+                  Étudiante en développement web, je construis des interfaces soignées et
+                  fonctionnelles avec HTML, CSS, JavaScript et React — toujours curieuse
+                  d'apprendre une techno de plus.
                 </p>
                 <div class="intro-status">
                   <p><span class="intro-key">Rôle</span> Développeur front-end en formation</p>
@@ -137,7 +143,7 @@
         </a>
 
         <a href="pages/contact.html" class="open-page desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-transparent bg-transparent px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]" data-title="Contact">
-          <img src="media/dossier (1).png" alt="" class="mx-auto w-8">
+          <img src="media/dossier-2.png" alt="" class="mx-auto w-8">
           <span class="text-[0.7rem] font-semibold leading-[1.15]">Contact</span>
         </a>
 
@@ -214,5 +220,12 @@
   <script src="javascript/widgets.js"></script>
   <script src="javascript/windows-iframe.js"></script>
   <script src="javascript/easter-eggs.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch((err) => console.error('Échec d\'enregistrement du Service Worker :', err));
+      });
+    }
+  </script>
 </body>
 </html>

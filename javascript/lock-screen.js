@@ -28,11 +28,11 @@ function updateClock() {
 }
 
 function unlock() {
-  lockScreen.classList.add("hidden");
+  lockScreen.classList.add("lock-screen--hidden");
 }
 
 function lock() {
-  lockScreen.classList.remove("hidden");
+  lockScreen.classList.remove("lock-screen--hidden");
   lockScreen.focus();
 }
 
