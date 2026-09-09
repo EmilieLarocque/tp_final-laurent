@@ -29,6 +29,19 @@
       if (value.trim().length > 80) return 'Maximum 80 caractères.';
       return '';
     },
+    'contact-current-platform': (value) => {
+      if (value.trim().length > 60) return 'Maximum 60 caractères.';
+      return '';
+    },
+    'contact-tech-pref': (value) => {
+      if (value.trim().length > 80) return 'Maximum 80 caractères.';
+      return '';
+    },
+    'contact-phone': (value) => {
+      if (value.trim().length === 0) return '';
+      if (!/^[\d\s()+.-]{7,20}$/.test(value.trim())) return 'Format de téléphone invalide.';
+      return '';
+    },
     'contact-project-type': (value) => {
       if (value.trim().length === 0) return 'Choisis un type de projet.';
       return '';
@@ -92,6 +105,9 @@
       `Email : ${textValue('contact-email')}`,
       `Appli de visio préférée : ${textValue('contact-call-app')}`,
       `Entreprise / organisation : ${textValue('contact-company')}`,
+      `Plateforme actuelle : ${textValue('contact-current-platform')}`,
+      `Préférences technos : ${textValue('contact-tech-pref')}`,
+      `Téléphone : ${textValue('contact-phone')}`,
       `Type de projet : ${selectedText('contact-project-type')}`,
       `Budget estimé : ${selectedText('contact-budget')}`,
       `Délai souhaité : ${textValue('contact-deadline')}`,

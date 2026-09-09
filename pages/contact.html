@@ -150,10 +150,29 @@
                 <span class="contact-field__error" id="error-contact-budget" role="alert"></span>
               </div>
             </div>
-            <div class="contact-field">
-              <label for="contact-deadline">Délai souhaité</label>
-              <input type="text" id="contact-deadline" name="deadline" placeholder="Ex. : dans 1 mois, avant décembre..." aria-describedby="error-contact-deadline">
-              <span class="contact-field__error" id="error-contact-deadline" role="alert"></span>
+            <div class="contact-form__row grid grid-cols-12 gap-4">
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-current-platform">Plateforme actuelle</label>
+                <input type="text" id="contact-current-platform" name="current-platform" placeholder="WordPress, Wix, Shopify, aucun... (optionnel)" aria-describedby="error-contact-current-platform">
+                <span class="contact-field__error" id="error-contact-current-platform" role="alert"></span>
+              </div>
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-tech-pref">Préférences technos pour le projet</label>
+                <input type="text" id="contact-tech-pref" name="tech-pref" placeholder="React, WordPress, pas de préférence... (optionnel)" aria-describedby="error-contact-tech-pref">
+                <span class="contact-field__error" id="error-contact-tech-pref" role="alert"></span>
+              </div>
+            </div>
+            <div class="contact-form__row grid grid-cols-12 gap-4">
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-phone">Téléphone</label>
+                <input type="tel" id="contact-phone" name="phone" placeholder="ex. : 819-123-4567 (optionnel)" autocomplete="tel" aria-describedby="error-contact-phone">
+                <span class="contact-field__error" id="error-contact-phone" role="alert"></span>
+              </div>
+              <div class="contact-field col-span-12 sm:col-span-6">
+                <label for="contact-deadline">Délai souhaité</label>
+                <input type="text" id="contact-deadline" name="deadline" placeholder="Ex. : dans 1 mois, avant décembre..." aria-describedby="error-contact-deadline">
+                <span class="contact-field__error" id="error-contact-deadline" role="alert"></span>
+              </div>
             </div>
             <div class="contact-field">
               <label for="contact-message">Message</label>
