@@ -13,7 +13,7 @@
   --color-border: rgba(255, 255, 255, 0.1);
 
   --color-primary: #c77a5c;
-  --color-secondary: #a97c8e;
+  --color-secondary: #6c4dff;
 
   --font-main: Arial, Helvetica, sans-serif;
 
@@ -82,7 +82,7 @@
      multiply par-dessus. Le N&B garantit que les deux images partagent le
      même rendu, peu importe leurs couleurs d'origine. */
   --img-filter: contrast(128%) grayscale(100%) saturate(120%);
-  --img-tint: #c77a5c;
+  --img-tint: #fa00cc;
   --img-tint-opacity: 0.15;
 }
 
