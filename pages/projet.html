@@ -95,22 +95,22 @@
 
         <section class="mt-8" aria-labelledby="tech-title">
           <h2 id="tech-title" class="explorer__group-title">Technologies utilisées</h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">HTML</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">CSS</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">JavaScript</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">Tailwind CSS</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">PWA</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">React</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">Node.js</span>
-            <span class="inline-flex items-center rounded-full border border-[rgba(255,255,255,0.08)] bg-[var(--exp-panel-soft)] px-3 py-1 text-[0.75rem] font-semibold text-[var(--exp-cream)]">SQL</span>
+          <div class="explorer__legend" role="group" aria-label="Filtrer les projets par technologie">
+            <button type="button" class="explorer__legend-item" data-filter-tech="HTML" aria-pressed="false">HTML</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="CSS" aria-pressed="false">CSS</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="JavaScript" aria-pressed="false">JavaScript</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="Tailwind CSS" aria-pressed="false">Tailwind CSS</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="PWA" aria-pressed="false">PWA</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="React" aria-pressed="false">React</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="Node.js" aria-pressed="false">Node.js</button>
+            <button type="button" class="explorer__legend-item" data-filter-tech="SQL" aria-pressed="false">SQL</button>
           </div>
         </section>
 
         <section class="explorer__group" id="annee-2026" data-project-group>
           <h2 class="explorer__group-title">2026 <span class="explorer__group-count">(2)</span></h2>
           <div class="explorer__grid grid grid-cols-12 gap-4">
-            <a href="projet-1.html" class="contents" data-category="site-web">
+            <a href="projet-1.html" class="contents" data-category="site-web" data-tech="HTML,CSS,JavaScript,Tailwind CSS,PWA">
             <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
               <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
                 <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
@@ -123,7 +123,7 @@
             </article>
             </a>
 
-            <a href="projet-2.html" class="contents" data-category="application">
+            <a href="projet-2.html" class="contents" data-category="application" data-tech="React,Node.js,SQL,JavaScript">
             <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
               <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-peach)] to-[var(--exp-terracotta)]">
                 <span class="text-[2.4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">📱</span>

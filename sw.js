@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v13';
 const CACHE_NAME = `portfolio-cache-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
