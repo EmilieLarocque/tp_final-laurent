@@ -8,7 +8,7 @@
 
   const status = document.getElementById('contact-form-status');
   const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const DEST_EMAIL = 'contact@exemple.com';
+  const DEST_EMAIL = 'oceanlounge_94@hotmail.com';
 
   const validators = {
     'contact-name': (value) => {
