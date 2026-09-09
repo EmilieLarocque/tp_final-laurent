@@ -12,8 +12,8 @@
   --color-text-muted: #92929b;
   --color-border: rgba(255, 255, 255, 0.1);
 
-  --color-primary: #d000ff;
-  --color-secondary: #6c4dff;
+  --color-primary: #c77a5c;
+  --color-secondary: #a97c8e;
 
   --font-main: Arial, Helvetica, sans-serif;
 
@@ -82,7 +82,7 @@
      multiply par-dessus. Le N&B garantit que les deux images partagent le
      même rendu, peu importe leurs couleurs d'origine. */
   --img-filter: contrast(128%) grayscale(100%) saturate(120%);
-  --img-tint: #fa00cc;
+  --img-tint: #c77a5c;
   --img-tint-opacity: 0.15;
 }
 
@@ -178,7 +178,7 @@ body::after {
   justify-content: center;
   gap: 30px;
 
-  background: linear-gradient(160deg, #1a0630 0%, var(--color-bg) 65%);
+  background: linear-gradient(160deg, var(--warm-bg-1) 0%, var(--warm-bg-2) 65%);
   color: var(--color-text);
   text-align: center;
   cursor: pointer;
@@ -225,7 +225,7 @@ body::after {
 }
 
 .lock-screen__role {
-  color: var(--color-primary);
+  color: var(--warm-terracotta);
   font-size: var(--fs-sm);
   font-weight: 600;
   text-transform: uppercase;
@@ -1518,7 +1518,7 @@ body::after {
   color: var(--warm-peach);
 }
 
-.section-head h3 {
+.section-head--divider h2 {
   margin: 0;
   font-family: var(--warm-font-display);
   font-weight: 800;
