@@ -64,45 +64,45 @@
   </div>
 </div>
 
-<main class="stage grid grid-cols-12 gap-4">
+<main class="about-cas__stage grid grid-cols-12 gap-4">
 
 <!-- VIEWPORT : portrait façon HUD de jeu (badge de niveau, brackets, XP) -->
   <section class="viewport col-span-12 md:col-span-8" aria-label="Profil">
-    <div class="portrait-wrap">
-      <div class="portrait-frame">
+    <div class="portrait">
+      <div class="portrait__frame">
         <img src="../media/sims4-body.png" alt="Avatar 3D stylisé d'Émilie" />
       </div>
-      <span class="portrait-bracket portrait-bracket--tl" aria-hidden="true"></span>
-      <span class="portrait-bracket portrait-bracket--tr" aria-hidden="true"></span>
-      <span class="portrait-bracket portrait-bracket--bl" aria-hidden="true"></span>
-      <span class="portrait-bracket portrait-bracket--br" aria-hidden="true"></span>
-      <div class="lvl-badge">
-        <span class="lvl-badge-label">LVL</span>
-        <span class="lvl-badge-num">12</span>
+      <span class="portrait__bracket portrait__bracket--tl" aria-hidden="true"></span>
+      <span class="portrait__bracket portrait__bracket--tr" aria-hidden="true"></span>
+      <span class="portrait__bracket portrait__bracket--bl" aria-hidden="true"></span>
+      <span class="portrait__bracket portrait__bracket--br" aria-hidden="true"></span>
+      <div class="level-badge">
+        <span class="level-badge__label">LVL</span>
+        <span class="level-badge__num">12</span>
       </div>
     </div>
 
-    <h1 class="profile-name">Émilie</h1>
-    <div class="profile-subtitle">Développeuse front-end · Niveau créatif</div>
+    <h1 class="profile__name">Émilie</h1>
+    <div class="profile__subtitle">Développeuse front-end · Niveau créatif</div>
 
-    <div class="xp-row">
-      <span class="xp-label">XP</span>
-      <div class="xp-segments">
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment xp-segment--filled"></span>
-        <span class="xp-segment"></span>
-        <span class="xp-segment"></span>
-        <span class="xp-segment"></span>
+    <div class="xp-bar">
+      <span class="xp-bar__label">XP</span>
+      <div class="xp-bar__segments">
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment xp-bar__segment--filled"></span>
+        <span class="xp-bar__segment"></span>
+        <span class="xp-bar__segment"></span>
+        <span class="xp-bar__segment"></span>
       </div>
-      <span class="xp-value">72%</span>
+      <span class="xp-bar__value">72%</span>
     </div>
 
-    <a href="cv.html" class="cv-link">
+    <a href="cv.html" class="profile__cv-link">
       <span aria-hidden="true">📄</span> Voir le CV complet
     </a>
   </section>
@@ -114,27 +114,27 @@
       <span class="section-head__tick"></span>
       <h3 id="stats-title">Statistiques</h3>
     </div>
-    <div class="stats-wrap">
+    <div class="rightpanel__stats">
       <div class="stat-row">
-        <span class="stat-row-label">Créativité</span>
-        <div class="stat-segments">
-          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+        <span class="stat-row__label">Créativité</span>
+        <div class="stat-row__segments">
+          <span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span>
         </div>
-        <span class="stat-row-value">82</span>
+        <span class="stat-row__value">82</span>
       </div>
       <div class="stat-row">
-        <span class="stat-row-label">Rigueur</span>
-        <div class="stat-segments">
-          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span><span class="stat-segment"></span>
+        <span class="stat-row__label">Rigueur</span>
+        <div class="stat-row__segments">
+          <span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span><span class="stat-row__segment"></span>
         </div>
-        <span class="stat-row-value">70</span>
+        <span class="stat-row__value">70</span>
       </div>
       <div class="stat-row">
-        <span class="stat-row-label">Curiosité</span>
-        <div class="stat-segments">
-          <span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment stat-segment--filled"></span><span class="stat-segment"></span>
+        <span class="stat-row__label">Curiosité</span>
+        <div class="stat-row__segments">
+          <span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment stat-row__segment--filled"></span><span class="stat-row__segment"></span>
         </div>
-        <span class="stat-row-value">95</span>
+        <span class="stat-row__value">95</span>
       </div>
     </div>
     </section>
@@ -144,12 +144,12 @@
       <span class="section-head__tick"></span>
       <h3 id="software-title">Logiciels</h3>
     </div>
-    <div class="items-row">
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Figma</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">VS Code</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Git</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">GitHub</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Trello</span></div>
+    <div class="item-list">
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Figma</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">VS Code</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Git</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">GitHub</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Trello</span></div>
     </div>
     </section>
 
@@ -158,19 +158,19 @@
       <span class="section-head__tick"></span>
       <h3 id="languages-title">Langages</h3>
     </div>
-    <div class="items-row">
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">JavaScript</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">HTML</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">CSS</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Tailwind CSS</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Node.js</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">Bootstrap</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">React</span></div>
-      <div class="item-slot"><span class="item-dot"></span><span class="item-label">SQL</span></div>
+    <div class="item-list">
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">JavaScript</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">HTML</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">CSS</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Tailwind CSS</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Node.js</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">Bootstrap</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">React</span></div>
+      <div class="item-list__slot"><span class="item-list__dot"></span><span class="item-list__label">SQL</span></div>
     </div>
     </section>
 
-    <p class="save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
+    <p class="rightpanel__save-line">&gt; SAVE_FILE: emilie_portfolio.dat</p>
   </div>
 
 </main>

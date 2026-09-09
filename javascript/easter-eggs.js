@@ -95,7 +95,7 @@ function triggerBSOD() {
 ========================================================= */
 
 document.querySelectorAll(".desktop-about").forEach(function (notification) {
-  const closeButton = notification.querySelector(".desktop-about-close");
+  const closeButton = notification.querySelector(".desktop-about__close");
   if (!closeButton) return;
 
   closeButton.addEventListener("click", function () {

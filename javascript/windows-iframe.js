@@ -33,15 +33,15 @@ function createWindow(url, title) {
   const windowElement = document.createElement("div");
   windowElement.className = "window";
   windowElement.innerHTML = `
-    <div class="window-header">
-      <div class="window-title">${title}</div>
-      <div class="window-controls">
-        <button type="button" class="window-control window-control--minimize" title="Réduire">−</button>
-        <button type="button" class="window-control window-control--maximize" title="Agrandir">□</button>
-        <button type="button" class="window-control window-control--close" title="Fermer">×</button>
+    <div class="window__header">
+      <div class="window__title">${title}</div>
+      <div class="window__controls">
+        <button type="button" class="window__control window__control--minimize" title="Réduire">−</button>
+        <button type="button" class="window__control window__control--maximize" title="Agrandir">□</button>
+        <button type="button" class="window__control window__control--close" title="Fermer">×</button>
       </div>
     </div>
-    <div class="window-content">
+    <div class="window__content">
       <iframe src="${url}" title="${title}" loading="lazy"></iframe>
     </div>
   `;
@@ -56,10 +56,10 @@ function createWindow(url, title) {
     bringToFront(windowElement);
   });
 
-  const header = windowElement.querySelector(".window-header");
-  const minimizeButton = windowElement.querySelector(".window-control--minimize");
-  const maximizeButton = windowElement.querySelector(".window-control--maximize");
-  const closeButton = windowElement.querySelector(".window-control--close");
+  const header = windowElement.querySelector(".window__header");
+  const minimizeButton = windowElement.querySelector(".window__control--minimize");
+  const maximizeButton = windowElement.querySelector(".window__control--maximize");
+  const closeButton = windowElement.querySelector(".window__control--close");
 
   minimizeButton.addEventListener("click", function (event) {
     event.stopPropagation();
@@ -128,7 +128,7 @@ function makeDraggable(windowElement, header, desktop) {
   let offsetY = 0;
 
   header.addEventListener("mousedown", function (event) {
-    if (event.target.closest(".window-controls")) return;
+    if (event.target.closest(".window__controls")) return;
     if (windowElement.classList.contains("window--maximized")) return;
 
     dragging = true;
@@ -167,7 +167,7 @@ function makeDraggable(windowElement, header, desktop) {
 function createTaskbarButton(windowElement, title) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = "taskbar-window";
+  button.className = "taskbar__window";
   button.textContent = title;
 
   button.addEventListener("click", function () {
@@ -200,7 +200,7 @@ function syncTaskbar() {
       windowItem.classList.contains("window--active") &&
       !windowItem.classList.contains("window--minimized");
 
-    windowItem.taskbarButton.classList.toggle("taskbar-window--active", isFocused);
+    windowItem.taskbarButton.classList.toggle("taskbar__window--active", isFocused);
   });
 }
 

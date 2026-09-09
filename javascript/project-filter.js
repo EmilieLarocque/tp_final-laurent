@@ -3,9 +3,9 @@
 // réinitialise et affiche tout.
 
 (function () {
-  const legendButtons = document.querySelectorAll(".explorer-legend-item[data-filter]");
+  const legendButtons = document.querySelectorAll(".explorer__legend-item[data-filter]");
   const projectLinks = document.querySelectorAll("[data-category]");
-  const groups = document.querySelectorAll(".explorer-group[data-project-group]");
+  const groups = document.querySelectorAll(".explorer__group[data-project-group]");
 
   if (!legendButtons.length || !projectLinks.length) return;
 

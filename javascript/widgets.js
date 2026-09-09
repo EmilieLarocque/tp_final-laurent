@@ -109,7 +109,7 @@ function renderCalendar() {
 
   WEEKDAYS.forEach(function (day) {
     const weekdayCell = document.createElement("span");
-    weekdayCell.className = "calendar-weekday";
+    weekdayCell.className = "calendar__weekday";
     weekdayCell.textContent = day;
     grid.appendChild(weekdayCell);
   });
@@ -128,16 +128,16 @@ function renderCalendar() {
     const dateKey = formatDateKey(year, month, day);
 
     const dayCell = document.createElement("span");
-    dayCell.className = "calendar-day";
+    dayCell.className = "calendar__day";
     dayCell.textContent = day;
     dayCell.dataset.date = dateKey;
 
     if (day === today.getDate()) {
-      dayCell.classList.add("calendar-day--today");
+      dayCell.classList.add("calendar__day--today");
     }
 
     if (AVAILABILITY[dateKey]) {
-      dayCell.classList.add("calendar-day--has-slots");
+      dayCell.classList.add("calendar__day--has-slots");
     }
 
     dayCell.addEventListener("click", function () {
@@ -161,28 +161,28 @@ function formatDateKey(year, month, day) {
 function selectDay(dateKey) {
   const slotsPanel = document.getElementById("calendar-slots");
 
-  document.querySelectorAll(".calendar-day--selected").forEach(function (cell) {
-    cell.classList.remove("calendar-day--selected");
+  document.querySelectorAll(".calendar__day--selected").forEach(function (cell) {
+    cell.classList.remove("calendar__day--selected");
   });
 
-  const selectedCell = document.querySelector(`.calendar-day[data-date="${dateKey}"]`);
+  const selectedCell = document.querySelector(`.calendar__day[data-date="${dateKey}"]`);
   if (selectedCell) {
-    selectedCell.classList.add("calendar-day--selected");
+    selectedCell.classList.add("calendar__day--selected");
   }
 
   const slots = AVAILABILITY[dateKey];
 
   if (!slots) {
-    slotsPanel.innerHTML = `<p class="calendar-slots-empty">Aucun créneau prévu ce jour-là.</p>`;
+    slotsPanel.innerHTML = `<p class="calendar__slots-empty">Aucun créneau prévu ce jour-là.</p>`;
     return;
   }
 
   slotsPanel.innerHTML = slots
     .map(function (slot) {
-      const status = slot.available ? "calendar-slot--available" : "calendar-slot--unavailable";
+      const status = slot.available ? "calendar__slot--available" : "calendar__slot--unavailable";
       const label = slot.available ? "Dispo" : "Pris";
       return `
-        <div class="calendar-slot ${status}">
+        <div class="calendar__slot ${status}">
           <span>${slot.time}</span>
           <span>${label}</span>
         </div>

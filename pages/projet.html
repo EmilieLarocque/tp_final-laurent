@@ -65,37 +65,37 @@
       </div>
     </div>
 
-    <div class="explorer-body">
+    <div class="explorer__body">
 
       <!-- Recap des projets par date, façon "Accès rapide" de l'explorateur -->
-      <aside class="explorer-sidebar">
-        <nav class="explorer-nav" aria-label="Projets par date">
-          <span class="explorer-nav-heading">Projets par date</span>
-          <a href="#annee-2026" class="explorer-nav-item explorer-nav-item--active">
-            <span class="explorer-nav-icon" aria-hidden="true">🗓️</span>
+      <aside class="explorer__sidebar">
+        <nav class="explorer__nav" aria-label="Projets par date">
+          <span class="explorer__nav-heading">Projets par date</span>
+          <a href="#annee-2026" class="explorer__nav-item explorer__nav-item--active">
+            <span class="explorer__nav-icon" aria-hidden="true">🗓️</span>
             2026
-            <span class="explorer-nav-count">(2)</span>
+            <span class="explorer__nav-count">(2)</span>
           </a>
         </nav>
       </aside>
 
-      <main class="explorer-main">
-        <header class="explorer-main-header">
+      <main class="explorer__main">
+        <header class="explorer__main-header">
           <h1>Mes réalisations</h1>
           <p>Une sélection de projets réalisés en formation ou en autonomie.</p>
         </header>
 
-        <section class="explorer-group" aria-labelledby="legend-title">
-          <h2 id="legend-title" class="explorer-group-title">Légende</h2>
-          <div class="explorer-legend" role="group" aria-label="Filtrer les projets par catégorie">
-            <button type="button" class="explorer-legend-item" data-filter="site-web" aria-pressed="false"><span aria-hidden="true">🖥️</span> Site web</button>
-            <button type="button" class="explorer-legend-item" data-filter="application" aria-pressed="false"><span aria-hidden="true">📱</span> Application</button>
+        <section class="explorer__group" aria-labelledby="legend-title">
+          <h2 id="legend-title" class="explorer__group-title">Légende</h2>
+          <div class="explorer__legend" role="group" aria-label="Filtrer les projets par catégorie">
+            <button type="button" class="explorer__legend-item" data-filter="site-web" aria-pressed="false"><span aria-hidden="true">🖥️</span> Site web</button>
+            <button type="button" class="explorer__legend-item" data-filter="application" aria-pressed="false"><span aria-hidden="true">📱</span> Application</button>
           </div>
         </section>
 
-        <section class="explorer-group" id="annee-2026" data-project-group>
-          <h2 class="explorer-group-title">2026 <span class="explorer-group-count">(2)</span></h2>
-          <div class="explorer-grid grid grid-cols-12 gap-4">
+        <section class="explorer__group" id="annee-2026" data-project-group>
+          <h2 class="explorer__group-title">2026 <span class="explorer__group-count">(2)</span></h2>
+          <div class="explorer__grid grid grid-cols-12 gap-4">
             <a href="projet-1.html" class="contents" data-category="site-web">
             <article class="col-span-12 sm:col-span-6 lg:col-span-4 flex flex-col overflow-hidden rounded-[var(--radius-md)] border border-[rgba(255,255,255,0.06)] bg-[var(--exp-panel-soft)] transition-[transform,border-color] duration-200 ease-in-out hover:-translate-y-[3px] hover:border-[rgba(199,122,92,0.4)]">
               <div class="flex aspect-[4/3] items-center justify-center bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">

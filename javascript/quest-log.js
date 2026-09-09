@@ -5,10 +5,10 @@
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const items = document.querySelectorAll(".quest-list-item");
-  const detailTag = document.querySelector(".quest-detail-tag");
-  const detailTitle = document.querySelector(".quest-detail-title");
-  const detailDesc = document.querySelector(".quest-detail-desc");
+  const items = document.querySelectorAll(".quest-list__item");
+  const detailTag = document.querySelector(".quest-detail__tag");
+  const detailTitle = document.querySelector(".quest-detail__title");
+  const detailDesc = document.querySelector(".quest-detail__desc");
   const detailChecklist = document.querySelector(".quest-checklist");
 
   if (!items.length || !detailTag || !detailTitle || !detailDesc || !detailChecklist) return;
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
   items.forEach(function (item) {
     item.addEventListener("click", function () {
       items.forEach(function (other) {
-        other.classList.remove("quest-list-item--active");
+        other.classList.remove("quest-list__item--active");
       });
-      item.classList.add("quest-list-item--active");
+      item.classList.add("quest-list__item--active");
 
       detailTag.textContent = item.dataset.tag;
       detailTitle.textContent = item.dataset.title;

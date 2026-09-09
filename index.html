@@ -25,17 +25,17 @@
 
   <!-- Écran de verrouillage : affiché au chargement, se cache au clic -->
   <div id="lock-screen" class="lock-screen" role="button" tabindex="0" aria-label="Cliquer pour déverrouiller" autofocus>
-    <div class="lock-clock">
-      <span class="lock-date" id="lock-date"></span>
-      <span class="lock-time" id="lock-time"></span>
+    <div class="lock-screen__clock">
+      <span class="lock-screen__date" id="lock-date"></span>
+      <span class="lock-screen__time" id="lock-time"></span>
     </div>
 
-    <div class="lock-user">
-      <span class="lock-name">Émilie Larocque</span>
-      <span class="lock-role">Portfolio</span>
+    <div class="lock-screen__user">
+      <span class="lock-screen__name">Émilie Larocque</span>
+      <span class="lock-screen__role">Portfolio</span>
     </div>
 
-    <span class="lock-hint">Cliquer pour déverrouiller</span>
+    <span class="lock-screen__hint">Cliquer pour déverrouiller</span>
   </div>
 
   <!-- Easter egg : faux écran bleu, déclenché après 10 clics sur node_modules -->
@@ -54,56 +54,56 @@
     <!-- #home est le "bureau" : les liens .open-page y ouvrent des fenêtres -->
     <section id="home" class="hero windows-desktop">
 
-      <div class="hero-content">
+      <div class="hero__content">
         <div class="intro-stack">
           <div class="intro-photo" aria-hidden="true">
-            <span class="intro-photo-label">
+            <span class="intro-photo__label">
               <img src="media/sims4-portrait.png" alt="Portrait d'Émilie Larocque">
               </span>
           </div>
 
-          <section class="intro-window-wrap" aria-labelledby="intro-name">
+          <section class="intro-stack__window-wrap" aria-labelledby="intro-name">
             <div class="intro-window">
-              <div class="intro-window-header">
-                <span class="intro-window-title">moi@portfolio:~</span>
-                <span class="intro-window-controls" aria-hidden="true">
-                  <span class="intro-window-control">⟳</span>
-                  <span class="intro-window-control">—</span>
-                  <span class="intro-window-control">▢</span>
-                  <span class="intro-window-control">×</span>
+              <div class="intro-window__header">
+                <span class="intro-window__title">moi@portfolio:~</span>
+                <span class="intro-window__controls" aria-hidden="true">
+                  <span class="intro-window__control">⟳</span>
+                  <span class="intro-window__control">—</span>
+                  <span class="intro-window__control">▢</span>
+                  <span class="intro-window__control">×</span>
                 </span>
               </div>
-              <div class="intro-window-body">
-                <h1 id="intro-name" class="intro-name">Émilie Larocque</h1>
-                <p class="hero-description">
+              <div class="intro-window__body">
+                <h1 id="intro-name" class="intro-window__name">Émilie Larocque</h1>
+                <p class="intro-window__description">
                   Étudiante en développement web, je construis des interfaces soignées et
                   fonctionnelles avec HTML, CSS, JavaScript et React — toujours curieuse
                   d'apprendre une techno de plus.
                 </p>
-                <div class="intro-status">
-                  <p><span class="intro-key">Rôle</span> Développeur front-end en formation</p>
-                  <p><span class="intro-key">Disponibilité</span> Ouvert à une alternance</p>
+                <div class="intro-window__status">
+                  <p><span class="intro-window__key">Rôle</span> Développeur front-end en formation</p>
+                  <p><span class="intro-window__key">Disponibilité</span> Ouvert à une alternance</p>
                 </div>
-                <p class="intro-prompt">[nom@portfolio ~]$ <span class="intro-cursor">_</span></p>
+                <p class="intro-window__prompt">[nom@portfolio ~]$ <span class="intro-window__cursor">_</span></p>
               </div>
             </div>
 
-            <div class="widget widget-weather corner-widget corner-widget--top" id="weather-widget">
-              <div class="widget-titlebar">
-                <span class="widget-titlebar-title">meteo.app</span>
+            <div class="widget widget--weather corner-widget corner-widget--top" id="weather-widget">
+              <div class="widget__titlebar">
+                <span class="widget__titlebar-title">meteo.app</span>
               </div>
-              <div class="widget-weather-row">
-                <span class="widget-icon" id="weather-icon">⛅</span>
-                <div class="widget-weather-info">
-                  <span class="widget-weather-temp" id="weather-temp">--°</span>
-                  <span class="widget-weather-city" id="weather-city"></span>
+              <div class="widget__weather-row">
+                <span class="widget__icon" id="weather-icon">⛅</span>
+                <div class="widget__weather-info">
+                  <span class="widget__weather-temp" id="weather-temp">--°</span>
+                  <span class="widget__weather-city" id="weather-city"></span>
                 </div>
               </div>
             </div>
 
-            <div class="widget widget-spotify corner-widget corner-widget--bottom">
-              <div class="widget-titlebar widget-titlebar--flush">
-                <span class="widget-titlebar-title">spotify.app</span>
+            <div class="widget widget--spotify corner-widget corner-widget--bottom">
+              <div class="widget__titlebar widget__titlebar--flush">
+                <span class="widget__titlebar-title">spotify.app</span>
               </div>
               <!-- Remplace l'ID de playlist par la tienne : clic droit sur une playlist Spotify -> Partager -> Copier le lien, puis garde uniquement l'ID -->
               <iframe
@@ -120,7 +120,7 @@
         </div>
       </div>
 
-      <div class="hero-visual"></div>
+      <div class="hero__visual"></div>
 
       <!-- Icônes du bureau : navigation sous forme de dossiers, + l'easter egg node_modules -->
       <nav class="absolute left-[5vw] top-[30px] z-[2] flex flex-col gap-[2px]" aria-label="Navigation du bureau">
@@ -156,61 +156,61 @@
 
       <!-- Widget en direct : calendrier -->
       <section class="live-widgets" aria-labelledby="live-widgets-title">
-        <h2 id="live-widgets-title" class="live-widgets-title">Ce qui tourne sur mon bureau en ce moment</h2>
+        <h2 id="live-widgets-title" class="live-widgets__title">Ce qui tourne sur mon bureau en ce moment</h2>
 
-        <div class="widget widget-calendar">
-          <div class="widget-titlebar">
-            <span class="widget-titlebar-title">calendrier.app</span>
+        <div class="widget widget--calendar">
+          <div class="widget__titlebar">
+            <span class="widget__titlebar-title">calendrier.app</span>
           </div>
-          <div class="widget-calendar-header" id="calendar-header"></div>
-          <div class="widget-calendar-grid" id="calendar-grid"></div>
-          <div class="calendar-slots" id="calendar-slots"></div>
+          <div class="widget__calendar-header" id="calendar-header"></div>
+          <div class="widget__calendar-grid" id="calendar-grid"></div>
+          <div class="calendar__slots" id="calendar-slots"></div>
         </div>
       </section>
 
       <!-- Notifications "méta" du bureau : licence + explication du concept -->
       <section class="notifications-stack" aria-label="Notifications du bureau">
         <div class="desktop-about" id="desktop-license">
-          <span class="desktop-about-icon" aria-hidden="true">📄</span>
-          <div class="desktop-about-body">
-            <p class="desktop-about-title">Licence</p>
-            <p class="desktop-about-text">© 2026 Émilie Larocque — Tous droits réservés.</p>
+          <span class="desktop-about__icon" aria-hidden="true">📄</span>
+          <div class="desktop-about__body">
+            <p class="desktop-about__title">Licence</p>
+            <p class="desktop-about__text">© 2026 Émilie Larocque — Tous droits réservés.</p>
           </div>
-          <button type="button" class="desktop-about-close" aria-label="Fermer la notification">×</button>
+          <button type="button" class="desktop-about__close" aria-label="Fermer la notification">×</button>
         </div>
 
         <div class="desktop-about" id="desktop-about">
-          <span class="desktop-about-icon" aria-hidden="true">🖥️</span>
-          <div class="desktop-about-body">
-            <p class="desktop-about-title">Le savais-tu ?</p>
-            <p class="desktop-about-text">
+          <span class="desktop-about__icon" aria-hidden="true">🖥️</span>
+          <div class="desktop-about__body">
+            <p class="desktop-about__title">Le savais-tu ?</p>
+            <p class="desktop-about__text">
               Ce portfolio reprend l'interface d'un bureau Windows. L'icône « node_modules » cache
               d'ailleurs un easter egg à découvrir.
             </p>
           </div>
-          <button type="button" class="desktop-about-close" aria-label="Fermer la notification">×</button>
+          <button type="button" class="desktop-about__close" aria-label="Fermer la notification">×</button>
         </div>
       </section>
 
       <!-- Barre des tâches -->
       <footer class="taskbar" id="taskbar">
-        <div class="taskbar-windows" id="taskbar-windows">
-          <button type="button" id="lock-button" class="lock-button" aria-label="Verrouiller l'écran" title="Verrouiller l'écran">
+        <div class="taskbar__windows" id="taskbar-windows">
+          <button type="button" id="lock-button" class="taskbar__lock-button" aria-label="Verrouiller l'écran" title="Verrouiller l'écran">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="5" y="11" width="14" height="9" rx="2"></rect>
               <path d="M8 11V8a4 4 0 0 1 8 0v3"></path>
             </svg>
           </button>
         </div>
-        <div class="taskbar-tray">
-          <a href="pages/contact.html" class="open-page taskbar-icon-btn" data-title="Contact" aria-label="Me contacter" title="Me contacter">
+        <div class="taskbar__tray">
+          <a href="pages/contact.html" class="open-page taskbar__icon-btn" data-title="Contact" aria-label="Me contacter" title="Me contacter">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="2"></rect>
               <path d="M3 7l9 6 9-6"></path>
             </svg>
           </a>
         </div>
-        <div class="taskbar-clock" id="taskbar-clock"></div> CA/FR
+        <div class="taskbar__clock" id="taskbar-clock"></div> CA/FR
       </footer>
 
     </section>
