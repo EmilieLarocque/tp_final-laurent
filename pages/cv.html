@@ -6,7 +6,7 @@
   <meta name="description" content="Curriculum vitae d'Émilie Larocque, développeuse front-end en formation.">
   <title>CV — Portfolio</title>
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#d000ff">
+  <meta name="theme-color" content="#c77a5c">
   <link rel="icon" href="../icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +30,13 @@
       </svg>
       Retour à À propos
     </a>
+
+    <button type="button" class="nav-menu__toggle md:hidden" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Ouvrir le menu de navigation">
+      <svg class="nav-menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+
     <button type="button" class="print-toolbar__download-btn" id="print-download-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 9V2h12v7"></path>
@@ -40,6 +47,22 @@
     </button>
   </div>
 
+  <nav id="nav-menu-panel" class="nav-menu__panel" aria-label="Navigation du site">
+    <button type="button" class="nav-menu__close" aria-label="Fermer le menu de navigation">
+      <svg class="nav-menu__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+    <p class="nav-menu__crumb">⌂ Portfolio › À propos › CV</p>
+    <ul class="nav-menu__list">
+      <li><a class="nav-menu__link" href="../index.html#home">Accueil</a></li>
+      <li><a class="nav-menu__link nav-menu__link--current" href="a-propos.html" aria-current="page">À propos</a></li>
+      <li><a class="nav-menu__link" href="projet.html">Projets</a></li>
+      <li><a class="nav-menu__link" href="services.html">Services</a></li>
+      <li><a class="nav-menu__link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
   <div class="print-sheet">
 
     <header class="print-header">
@@ -47,7 +70,7 @@
         <div class="print-header__eyebrow">⌂ Portfolio › CV</div>
         <h1>Curriculum vitae</h1>
       </div>
-      <p>Développeuse front-end · Niveau créatif · Trois-Rivières, QC</p>
+      <p>Développeuse front-end · Étudiante en formation · Québec, QC</p>
     </header>
 
     <main>
@@ -70,19 +93,19 @@
       </div>
       <p class="print-sheet__section-intro">Langages, frameworks et outils utilisés au quotidien.</p>
 
-      <div class="print-sheet__sector-grid">
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">JavaScript</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">HTML</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">CSS</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Tailwind CSS</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Node.js</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Bootstrap</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">React</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">SQL</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Figma</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Git &amp; GitHub</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">VS Code</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Trello</span></div>
+      <div class="print-sheet__sector-grid grid grid-cols-12 gap-[10px]">
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">JavaScript</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">HTML</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">CSS</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Tailwind CSS</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Node.js</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Bootstrap</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">React</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">SQL</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Figma</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Git &amp; GitHub</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">VS Code</span></div>
+        <div class="print-sheet__sector-tile col-span-6 sm:col-span-4 lg:col-span-3"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Trello</span></div>
       </div>
     </section>
 
@@ -91,11 +114,11 @@
         <span class="section-head__tick" aria-hidden="true"></span>
         <h2>Coordonnées</h2>
       </div>
-      <div class="print-sheet__sector-grid">
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">contact@exemple.com</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Trois-Rivières, QC — à distance</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">LinkedIn</span></div>
-        <div class="print-sheet__sector-tile"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">GitHub</span></div>
+      <div class="print-sheet__sector-grid grid grid-cols-12 gap-[10px]">
+        <div class="print-sheet__sector-tile col-span-12 sm:col-span-6"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">oceanlounge_94@hotmail.com</span></div>
+        <div class="print-sheet__sector-tile col-span-12 sm:col-span-6"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">Québec, QC — à distance</span></div>
+        <div class="print-sheet__sector-tile col-span-12 sm:col-span-6"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">LinkedIn</span></div>
+        <div class="print-sheet__sector-tile col-span-12 sm:col-span-6"><span class="print-sheet__sector-dot" aria-hidden="true"></span><span class="print-sheet__sector-label">GitHub</span></div>
       </div>
     </section>
     </main>
@@ -117,5 +140,6 @@
       });
     }
   </script>
+  <script src="../javascript/nav-menu.js"></script>
 </body>
 </html>
