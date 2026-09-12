@@ -52,7 +52,7 @@
 
   <main>
     <!-- #home est le "bureau" : les liens .open-page y ouvrent des fenêtres -->
-    <section id="home" class="hero windows-desktop">
+    <section id="home" class="hero windows-desktop grid grid-cols-[auto_auto] justify-center items-center">
 
       <div class="hero__content">
         <div class="intro-stack">
@@ -121,8 +121,14 @@
 
       <div class="hero__visual"></div>
 
+      <button type="button" class="nav-menu__toggle nav-menu__toggle--desktop-icon md:hidden absolute left-[5vw] top-[30px] z-[2]" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Ouvrir le menu de navigation">
+        <svg class="nav-menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
       <!-- Icônes du bureau : navigation sous forme de dossiers, + l'easter egg node_modules -->
-      <nav class="absolute left-[5vw] top-[30px] z-[2] flex flex-col gap-[2px]" aria-label="Navigation du bureau">
+      <nav class="absolute left-[5vw] top-[30px] z-[2] hidden md:flex flex-col gap-[2px]" aria-label="Navigation du bureau">
         <a href="#home" class="desktop-icon relative flex w-[78px] flex-col items-center gap-[2px] rounded-[var(--radius-sm)] border border-[rgba(199,122,92,0.4)] bg-[rgba(199,122,92,0.1)] px-1 py-[6px] text-center text-[var(--color-text)] no-underline cursor-pointer hover:border-[var(--color-border)] hover:bg-[rgba(255,255,255,0.06)] focus-visible:border-[var(--color-border)] focus-visible:bg-[rgba(255,255,255,0.06)]">
           <img src="media/dossier-ouvert.png" alt="" class="mx-auto w-8">
           <span class="text-[0.7rem] font-semibold leading-[1.15]">Accueil</span>
@@ -222,8 +228,25 @@
             </svg>
           </a>
         </div>
-        <div class="taskbar__clock" id="taskbar-clock"></div> CA/FR
+        <div class="taskbar__clock" id="taskbar-clock"></div>
+        <span class="taskbar__locale">CA/FR</span>
       </footer>
+
+      <nav id="nav-menu-panel" class="nav-menu__panel" aria-label="Navigation du site">
+        <button type="button" class="nav-menu__close" aria-label="Fermer le menu de navigation">
+          <svg class="nav-menu__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </button>
+        <p class="nav-menu__crumb">⌂ Portfolio</p>
+        <ul class="nav-menu__list">
+          <li><a class="nav-menu__link nav-menu__link--current" href="#home" aria-current="page">Accueil</a></li>
+          <li><a class="nav-menu__link open-page" href="pages/a-propos.html" data-title="À propos">À propos</a></li>
+          <li><a class="nav-menu__link open-page" href="pages/projet.html" data-title="Projets">Projets</a></li>
+          <li><a class="nav-menu__link open-page" href="pages/services.html" data-title="Services">Services</a></li>
+          <li><a class="nav-menu__link open-page" href="pages/contact.html" data-title="Contact">Contact</a></li>
+        </ul>
+      </nav>
 
     </section>
   </main>
@@ -232,6 +255,7 @@
   <script src="javascript/widgets.js"></script>
   <script src="javascript/windows-iframe.js"></script>
   <script src="javascript/easter-eggs.js"></script>
+  <script src="javascript/nav-menu.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
