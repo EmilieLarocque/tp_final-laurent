@@ -135,6 +135,31 @@ body {
   overflow-x: hidden;
 }
 
+/* Scrollbar personnalisée (thème chaud terracotta), Firefox + navigateurs Chromium */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--warm-terracotta) var(--warm-bg-2);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warm-bg-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--warm-terracotta);
+  border-radius: 999px;
+  border: 2px solid var(--warm-bg-2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--warm-peach);
+}
+
 /* Image de fond isolée dans un pseudo-élément : le filtre s'applique
    uniquement à l'image, pas au contenu (texte, boutons...) au-dessus */
 body::before {
@@ -259,9 +284,6 @@ body::after {
   width: 100%;
   height: 100vh;
   padding: 50px 5vw 80px calc(5vw + 96px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   background: transparent;
 }
@@ -776,6 +798,16 @@ body::after {
   font-variant-numeric: tabular-nums;
 }
 
+.taskbar__locale {
+  flex-shrink: 0;
+  color: rgba(243, 233, 220, 0.4);
+  font-family: var(--wd-font-mono, "Space Mono", monospace);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.05em;
+  border-left: 1px solid rgba(243, 233, 220, 0.18);
+  padding-left: 15px;
+}
+
 /* =========================================================
    10. WIDGETS BUREAU
 ========================================================= */
@@ -1107,10 +1139,20 @@ body::after {
   }
 }
 
+@media (max-width: 767px) {
+  /* La colonne d'icônes de bureau est masquée sous 768px (menu hamburger
+     dans la taskbar à la place) : plus besoin de lui réserver de padding. */
+  .hero {
+    padding-left: 20px;
+  }
+}
+
 @media (max-width: 700px) {
   .hero {
     min-height: 100vh;
-    padding: 30px 20px 60px calc(20px + 92px);
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-bottom: 60px;
   }
 
   .hero h1 {
@@ -1552,57 +1594,6 @@ body::after {
   letter-spacing: 0.04em;
 }
 
-.about-cas .rightpanel__stats {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.about-cas .stat-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.about-cas .stat-row__label {
-  flex: 0 0 110px;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.about-cas .stat-row__segments {
-  flex: 1;
-  display: flex;
-  gap: 3px;
-}
-
-.about-cas .stat-row__segment {
-  flex: 1;
-  height: 12px;
-  border-radius: 2px;
-  background: var(--panel-soft);
-}
-
-.about-cas .stat-row__segment--filled {
-  background: linear-gradient(180deg, var(--accent), var(--accent-3));
-}
-
-.about-cas .stat-row__value {
-  flex-shrink: 0;
-  min-width: 34px;
-  padding: 3px 8px;
-  border-radius: 5px;
-  border: 1px solid rgba(199, 122, 92, 0.5);
-  background: rgba(36, 27, 23, 0.5);
-  color: var(--accent-3);
-  font-weight: 800;
-  font-size: var(--fs-xs);
-  text-align: center;
-}
-
 .about-cas .item-list {
   display: flex;
   flex-wrap: wrap;
@@ -1614,19 +1605,24 @@ body::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  width: 84px;
-  height: 68px;
-  border-radius: 10px;
+  gap: 4px;
+  width: 64px;
+  height: 52px;
+  border-radius: 8px;
   background: var(--panel-soft);
   border: 1px solid rgba(199, 122, 92, 0.35);
 }
 
-.about-cas .item-list__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-3);
+.about-cas .item-list__icon {
+  display: flex;
+  width: 16px;
+  height: 16px;
+}
+
+.about-cas .item-list__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .about-cas .item-list__label {
@@ -1635,6 +1631,62 @@ body::after {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+.about-cas .skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-cas .skill-bars__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: var(--fs-2xs);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.about-cas .skill-bars__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.about-cas .skill-bars__icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+}
+
+.about-cas .skill-bars__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about-cas .skill-bars__value {
+  color: var(--accent-3);
+}
+
+.about-cas .skill-bars__track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--panel-soft);
+  border: 1px solid rgba(199, 122, 92, 0.35);
+  overflow: hidden;
+}
+
+.about-cas .skill-bars__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
 }
 
 .about-cas .rightpanel__save-line {
@@ -2584,4 +2636,154 @@ a.contact-info__value:hover,
 
 .cv-print section + section {
   margin-top: 34px;
+}
+
+/* =========================================================
+   21. MENU HAMBURGER (nav-menu)
+   Composant BEM partagé par les 9 pages : bouton + panneau
+   plein écran, sous 768px uniquement (show/hide desktop via
+   les utilitaires Tailwind hidden/md:flex posés en HTML).
+   Couleurs sur les tokens --warm-* globaux pour rendre
+   correctement peu importe la page hôte.
+========================================================= */
+
+.nav-menu__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(36, 27, 23, 0.08);
+  color: var(--warm-ink);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.nav-menu__toggle:hover {
+  background: rgba(36, 27, 23, 0.18);
+}
+
+/* Sur index.html, le bouton prend la place des icônes de bureau (coin
+   haut-gauche, par-dessus l'image de fond) : même habillage que .desktop-icon
+   plutôt que le fond clair par défaut, pour rester lisible et cohérent. */
+.nav-menu__toggle--desktop-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(199, 122, 92, 0.4);
+  border-radius: var(--radius-sm);
+  background: rgba(199, 122, 92, 0.1);
+  color: var(--color-text);
+}
+
+.nav-menu__toggle--desktop-icon:hover {
+  border-color: var(--color-border);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-menu__toggle--desktop-icon .nav-menu__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-menu__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-menu__panel {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 90px 32px 40px;
+
+  background: var(--warm-panel);
+  color: var(--warm-cream);
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-menu__panel--open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav-menu__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(243, 233, 220, 0.08);
+  color: var(--warm-cream);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.nav-menu__close:hover {
+  background: rgba(243, 233, 220, 0.18);
+}
+
+.nav-menu__close-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.nav-menu__crumb {
+  font-family: var(--warm-font-mono);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--warm-peach);
+  opacity: 0.8;
+}
+
+.nav-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu__link {
+  display: block;
+  padding: 14px 4px;
+  border-bottom: 1px solid rgba(243, 233, 220, 0.12);
+  font-family: var(--warm-font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--warm-cream);
+  text-decoration: none;
+}
+
+.nav-menu__link:hover,
+.nav-menu__link:focus-visible {
+  color: var(--warm-terracotta);
+}
+
+.nav-menu__link--current {
+  color: var(--warm-terracotta);
+}
+
+@media print {
+  .nav-menu__toggle,
+  .nav-menu__panel {
+    display: none !important;
+  }
 }
