@@ -27,7 +27,7 @@
 
     <!-- Barre d'outils façon explorateur de fichiers (même style que pages/contact.html) -->
     <div class="toolbar">
-      <div class="toolbar__actions">
+      <div class="toolbar__actions hidden md:flex">
         <button type="button" class="toolbar__btn" title="Nouveau">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12h14"></path>
@@ -48,7 +48,7 @@
         </button>
       </div>
 
-      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+      <nav class="hidden md:flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
         <a href="../index.html#home" class="text-[var(--ct-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
           <span aria-hidden="true">⌂</span> Portfolio
         </a>
@@ -58,6 +58,12 @@
         <span class="text-[var(--ct-ink)] opacity-100 font-bold">Message envoyé</span>
       </nav>
 
+      <button type="button" class="nav-menu__toggle md:hidden" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Ouvrir le menu de navigation">
+        <svg class="nav-menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
       <div class="toolbar__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
@@ -66,6 +72,22 @@
         <span>Rechercher dans : Contact</span>
       </div>
     </div>
+
+    <nav id="nav-menu-panel" class="nav-menu__panel" aria-label="Navigation du site">
+      <button type="button" class="nav-menu__close" aria-label="Fermer le menu de navigation">
+        <svg class="nav-menu__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <p class="nav-menu__crumb">⌂ Portfolio › Contact › Message envoyé</p>
+      <ul class="nav-menu__list">
+        <li><a class="nav-menu__link" href="../index.html#home">Accueil</a></li>
+        <li><a class="nav-menu__link" href="a-propos.html">À propos</a></li>
+        <li><a class="nav-menu__link" href="projet.html">Projets</a></li>
+        <li><a class="nav-menu__link" href="services.html">Services</a></li>
+        <li><a class="nav-menu__link nav-menu__link--current" href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
 
     <main class="contact-main">
       <header class="contact-main__header">
@@ -153,5 +175,6 @@
       });
     }
   </script>
+  <script src="../javascript/nav-menu.js"></script>
 </body>
 </html>
