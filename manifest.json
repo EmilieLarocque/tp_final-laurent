@@ -8,7 +8,7 @@
   "display": "standalone",
   "orientation": "any",
   "lang": "fr-CA",
-  "background_color": "#14100c",
+  "background_color": "#191310",
   "theme_color": "#c77a5c",
   "icons": [
     {
@@ -51,14 +51,14 @@
   "screenshots": [
     {
       "src": "icons/screenshot-wide.png",
-      "sizes": "1280x720",
+      "sizes": "1916x941",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Aperçu du bureau du portfolio"
     },
     {
       "src": "icons/screenshot-narrow.png",
-      "sizes": "720x1280",
+      "sizes": "361x742",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Aperçu du bureau du portfolio sur mobile"
