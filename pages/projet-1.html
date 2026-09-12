@@ -6,7 +6,7 @@
   <meta name="description" content="Ce portfolio : un bureau Windows interactif construit en HTML, CSS, JavaScript et Tailwind, avec PWA et mode hors-ligne.">
   <title>Ce portfolio (bureau Windows interactif) — Portfolio</title>
   <link rel="manifest" href="../manifest.json">
-  <meta name="theme-color" content="#d000ff">
+  <meta name="theme-color" content="#c77a5c">
   <link rel="icon" href="../icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
 
     <!-- Barre d'outils façon explorateur de fichiers (même style que pages/projet.html) -->
     <div class="toolbar">
-      <div class="toolbar__actions">
+      <div class="toolbar__actions hidden md:flex">
         <button type="button" class="toolbar__btn" title="Nouveau">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12h14"></path>
@@ -48,7 +48,7 @@
         </button>
       </div>
 
-      <nav class="flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
+      <nav class="hidden md:flex items-center gap-[6px] rounded-full bg-[rgba(36,27,23,0.08)] px-[14px] py-[7px] font-['Space_Mono','Courier_New',monospace] italic text-[0.78rem]" aria-label="Chemin">
         <a href="../index.html#home" class="text-[var(--exp-ink)] opacity-70 transition-opacity duration-200 hover:opacity-100">
           <span aria-hidden="true">⌂</span> Portfolio
         </a>
@@ -57,6 +57,12 @@
         <span class="opacity-50" aria-hidden="true">›</span>
         <span class="text-[var(--exp-ink)] opacity-100 font-bold">Ce portfolio</span>
       </nav>
+
+      <button type="button" class="nav-menu__toggle md:hidden" aria-expanded="false" aria-controls="nav-menu-panel" aria-label="Ouvrir le menu de navigation">
+        <svg class="nav-menu__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
 
       <div class="toolbar__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -67,6 +73,22 @@
       </div>
     </div>
 
+    <nav id="nav-menu-panel" class="nav-menu__panel" aria-label="Navigation du site">
+      <button type="button" class="nav-menu__close" aria-label="Fermer le menu de navigation">
+        <svg class="nav-menu__close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+      <p class="nav-menu__crumb">⌂ Portfolio › Projets › Ce portfolio</p>
+      <ul class="nav-menu__list">
+        <li><a class="nav-menu__link" href="../index.html#home">Accueil</a></li>
+        <li><a class="nav-menu__link" href="a-propos.html">À propos</a></li>
+        <li><a class="nav-menu__link nav-menu__link--current" href="projet.html" aria-current="page">Projets</a></li>
+        <li><a class="nav-menu__link" href="services.html">Services</a></li>
+        <li><a class="nav-menu__link" href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
     <div class="explorer__body">
       <main class="explorer__main">
         <header class="explorer__main-header">
@@ -76,10 +98,12 @@
 
         <section aria-labelledby="apercu-title">
           <h2 id="apercu-title" class="explorer__group-title">Aperçu</h2>
-          <div class="flex aspect-[16/9] max-w-[480px] items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)] mb-4">
-            <span class="text-[4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
+          <div class="grid grid-cols-12 gap-6 items-center">
+            <div class="col-span-12 md:col-span-5 flex aspect-[16/9] items-center justify-center rounded-[var(--radius-md)] bg-gradient-to-br from-[var(--exp-mauve)] to-[var(--exp-terracotta)]">
+              <span class="text-[4rem] drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]" aria-hidden="true">🖥️</span>
+            </div>
+            <p class="col-span-12 md:col-span-7 text-[0.9rem] leading-[1.6] text-[rgba(243,233,220,0.75)]">Ce site portfolio recrée l'expérience d'un bureau Windows directement dans le navigateur : fenêtres, barre des tâches, écran de verrouillage, widgets météo et calendrier, le tout construit à la main en HTML, CSS et JavaScript, avec Tailwind pour les mises en page ponctuelles. C'est aussi une progressive web app (PWA) installable, avec Service Worker et prise en charge du mode hors-ligne.</p>
           </div>
-          <p class="text-[0.9rem] leading-[1.6] text-[rgba(243,233,220,0.75)]">Ce site portfolio recrée l'expérience d'un bureau Windows directement dans le navigateur : fenêtres, barre des tâches, écran de verrouillage, widgets météo et calendrier, le tout construit à la main en HTML, CSS et JavaScript, avec Tailwind pour les mises en page ponctuelles. C'est aussi une progressive web app (PWA) installable, avec Service Worker et prise en charge du mode hors-ligne.</p>
         </section>
 
         <section class="mt-8" aria-labelledby="tech-title">
@@ -112,5 +136,6 @@
       });
     }
   </script>
+  <script src="../javascript/nav-menu.js"></script>
 </body>
 </html>
